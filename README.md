@@ -1,2 +1,0 @@
-# angularFire
-Angular + Firebase Facturación

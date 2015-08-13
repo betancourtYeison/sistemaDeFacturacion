@@ -14,47 +14,56 @@ angular.module('facturacionLoginApp')
 
   	var user = false;//variable para determinar si hay un usuario
   	var emailUser = null;//variable para guardar el email de usuario
-	return{
-		loginFacebook:function(auth){//Funcion para realizar login federado con Facebook
-			auth.login('facebook',{
-				rememberMe: true,
-				scope: 'email, user_likes'
+	return{		
+		loginPass:function(chatRef,email,pass,scope){//Funcion para realizar login normal
+			chatRef.authWithPassword({
+			  email    : email,
+			  password : pass
+			}, function(error, authData) {
+			  if (error) {
+			  	scope.loginError = true;
+			    switch (error.code) {
+			      case "INVALID_EMAIL":
+			        console.log("The specified user account email is invalid.");
+			        break;
+			      case "INVALID_PASSWORD":
+			        console.log("The specified user account password is incorrect.");
+			        break;
+			      case "INVALID_USER":
+			        console.log("The specified user account does not exist.");
+			        break;
+			      default:
+			        console.log("Error logging user in:", error);
+			    }
+			  } else {
+			    console.log("Authenticated successfully with payload:", authData);  	    
+			    document.location.href = 'http://localhost:8080/sistemaDeFacturacion/admin.html';//redirecciona a login
+			  }
 			});
-		},
-		loginTwitter:function(auth){//Funcion para realizar login federado con Twitter
-			auth.login('twitter',{
-				rememberMe: true,
-				scope: 'email, user_likes'
-			});
-		},
-		loginGithub:function(auth){//Funcion para realizar login federado con Github
-			auth.login('github',{
-				rememberMe: true,
-				scope: 'email, user_likes'
-			});
-		},
-		loginPass:function(auth,email,pass){//Funcion para realizar login normal
-			auth.login('password',{
-				email: email,
-				password: pass
-			});
-		},
-		logout:function(auth,scope){//Funcion para cerrar sesion
-			auth.logout();
-			scope.user='';//borra el usuario
-			document.location.href = 'http://localhost:8080/sistemaDeFacturacion2/#/';//redirecciona a login
-		},
+		},		
 		newUser:function(chatRef,email,pass,scope){//Funcion para crear un usuario nuevo
 			chatRef.createUser({
 				email: email,
 				password: pass
-			}, function(error){
-				if(error === null){
-					scope.newUserError=false;////vuelve false para realizar la animacion 
-					scope.newUserCorrect=true;//vuelve true para realizar la animacion 
-				}else{
-					scope.newUserError=true;//vuelve true para realizar la animacion 
-				}
+			},
+			function(error, userData) {
+			  if (error) {
+			  	scope.newUserError=true;//vuelve true para realizar la animacion
+ 			    switch (error.code) {
+			      case "EMAIL_TAKEN":
+			        console.log("The new user account cannot be created because the email is already in use.");
+			        break;
+			      case "INVALID_EMAIL":
+			        console.log("The specified email is not a valid email.");
+			        break;
+			      default:
+			        console.log("Error creating user:", error);
+			    }
+			  } else {
+			  	scope.newUserError=false;////vuelve false para realizar la animacion 
+				scope.newUserCorrect=true;//vuelve true para realizar la animacion 
+			    console.log("Successfully created user account with uid:", userData.uid);
+			  }
 			});
 		},
 		setUser:function(userLog,email){//Funcion para guarda un usuario autenticado

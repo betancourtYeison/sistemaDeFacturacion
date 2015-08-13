@@ -32,12 +32,12 @@
           <p class="help-block text-danger" ng-show="form1.passU.$error.required">Campo obligatorio</p>
         </div>
       </div>      
-      <div class="row">
+      <div class="row">        
         <div class="col-xs-6">
-          <a href="#/" class="text-center"><button class="btn btn-default btn-block btn-flat">Volver</button></a>
+          <button class="btn btn-primary btn-block btn-flat" ng-click="newUser(user.mailC,user.passC)" ng-disabled="form1.$invalid">Registrarse</button>
         </div><!-- /.col -->
         <div class="col-xs-6">
-          <button class="btn btn-primary btn-block btn-flat" type="submit" ng-click="newUser(user.mailC,user.passC)" ng-disabled="form1.$invalid">Registrarse</button>
+          <a href="#/" class="text-center"><button class="btn btn-default btn-block btn-flat">Volver</button></a>
         </div><!-- /.col -->
       </div>
     </form>

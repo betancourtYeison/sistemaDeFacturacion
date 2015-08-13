@@ -8,23 +8,12 @@
  *
  * Main module of the application.
  */
-
-/* Controllers GoogleChart */
-google.load('visualization', '1', {
-  packages: ['corechart']
-});
  
 angular
   .module('facturacionAdminApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
+    'ngAnimate',    
     'ngRoute',
-    'firebase',
-    'ngSanitize',
-    'ngTouch'
+    'firebase'
   ])
   .config(function ($routeProvider) {
     $routeProvider//Determina las rutas con sus controladores
