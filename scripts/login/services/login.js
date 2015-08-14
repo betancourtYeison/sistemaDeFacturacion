@@ -22,15 +22,16 @@ angular.module('facturacionLoginApp')
 			}, function(error, authData) {
 			  if (error) {
 			  	scope.loginError = true;
+			  	console.log(scope.loginError);
 			    switch (error.code) {
 			      case "INVALID_EMAIL":
-			        console.log("The specified user account email is invalid.");
+			        document.getElementById('error').innerHTML = "El E-mail no es correcto";
 			        break;
 			      case "INVALID_PASSWORD":
-			        console.log("The specified user account password is incorrect.");
+			        document.getElementById('error').innerHTML = "La contraseña no es correcta";
 			        break;
 			      case "INVALID_USER":
-			        console.log("The specified user account does not exist.");
+			        document.getElementById('error').innerHTML = "Este usuario no existe";
 			        break;
 			      default:
 			        console.log("Error logging user in:", error);

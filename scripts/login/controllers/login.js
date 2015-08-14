@@ -12,7 +12,7 @@
 angular.module('facturacionLoginApp')
   .controller('LoginCtrl', ['$scope', 'loginService', function ($scope,loginService) {
 
-	$scope.loginError=false;//variable bool para realizar animacion
+	//$scope.loginError=false;//variable bool para realizar animacion
   	$scope.newUserError=false;//variable bool para realizar animacion
   	$scope.newUserCorrect=false;//variable bool para realizar animacion
 
