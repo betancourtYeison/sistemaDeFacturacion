@@ -20,8 +20,8 @@ angular
       .when('/', {//si en la url es /
         templateUrl: 'views/login.html',
       })
-      .when('/register', {//si en la url es /
-        templateUrl: 'views/register.html',
+      .when('/registro', {//si en la url es /
+        templateUrl: 'views/registro.html',
       })  
       .when('/404', {//si en la url es /
         templateUrl: 'views/404.html',

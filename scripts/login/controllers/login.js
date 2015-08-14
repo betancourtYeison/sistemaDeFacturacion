@@ -21,7 +21,7 @@ angular.module('facturacionLoginApp')
  	if(authData){
  		$scope.user = authData.password.email;
     	loginService.setUser(true,authData.password.email);  	
- 	}
+ 	} 	
         	
 	//Funcion para login por acceso normal
 	$scope.loginPass=function(email,pass){
