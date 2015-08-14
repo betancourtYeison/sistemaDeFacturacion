@@ -15,55 +15,53 @@ angular.module('facturacionLoginApp')
   	var user = false;//variable para determinar si hay un usuario
   	var emailUser = null;//variable para guardar el email de usuario
 	return{		
-		loginPass:function(chatRef,email,pass,scope){//Funcion para realizar login normal
+		loginPass:function(chatRef,email,pass){//Funcion para realizar login normal
 			chatRef.authWithPassword({
 			  email    : email,
 			  password : pass
 			}, function(error, authData) {
 			  if (error) {
-			  	scope.loginError = true;
-			  	console.log(scope.loginError);
 			    switch (error.code) {
 			      case "INVALID_EMAIL":
-			        document.getElementById('error').innerHTML = "El E-mail no es correcto";
+			        document.getElementById('errorLogin').innerHTML = "El E-mail no es correcto.";
 			        break;
 			      case "INVALID_PASSWORD":
-			        document.getElementById('error').innerHTML = "La contraseña no es correcta";
+			        document.getElementById('errorLogin').innerHTML = "La contraseña no es correcta.";
 			        break;
 			      case "INVALID_USER":
-			        document.getElementById('error').innerHTML = "Este usuario no existe";
+			        document.getElementById('errorLogin').innerHTML = "Este usuario no existe.";
 			        break;
 			      default:
-			        console.log("Error logging user in:", error);
+			      	document.getElementById('errorLogin').innerHTML = error;
 			    }
 			  } else {
-			    console.log("Authenticated successfully with payload:", authData);  	    
-			    document.location.href = 'http://localhost:8080/sistemaDeFacturacion/admin.html';//redirecciona a login
+			  	document.getElementById('errorLogin').innerHTML = "";
+			    document.location.href = 'http://localhost:8080/sistemaDeFacturacion/admin.html';//redirecciona a admin
 			  }
 			});
 		},		
-		newUser:function(chatRef,email,pass,scope){//Funcion para crear un usuario nuevo
+		newUser:function(chatRef,email,pass){//Funcion para crear un usuario nuevo
 			chatRef.createUser({
 				email: email,
 				password: pass
 			},
 			function(error, userData) {
-			  if (error) {
-			  	scope.newUserError=true;//vuelve true para realizar la animacion
+			  if (error) {	
+			  	document.getElementById('sucessLogin').innerHTML = "";		  	
  			    switch (error.code) {
-			      case "EMAIL_TAKEN":
-			        console.log("The new user account cannot be created because the email is already in use.");
+			      case "EMAIL_TAKEN":			        
+			        document.getElementById('errorRegister').innerHTML = "El E-mail ya esta en uso.";
 			        break;
 			      case "INVALID_EMAIL":
 			        console.log("The specified email is not a valid email.");
+			        document.getElementById('errorRegister').innerHTML = "No es un E-mail valido.";
 			        break;
 			      default:
-			        console.log("Error creating user:", error);
+			        document.getElementById('errorRegister').innerHTML = error;
 			    }
 			  } else {
-			  	scope.newUserError=false;////vuelve false para realizar la animacion 
-				scope.newUserCorrect=true;//vuelve true para realizar la animacion 
-			    console.log("Successfully created user account with uid:", userData.uid);
+			  	document.getElementById('errorRegister').innerHTML = "";
+			    document.getElementById('sucessLogin').innerHTML = "El usuario se ha creado satisfactoriamente.";
 			  }
 			});
 		},

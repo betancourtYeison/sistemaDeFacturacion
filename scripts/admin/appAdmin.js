@@ -24,33 +24,19 @@ angular
         templateUrl: 'views/ventas.html',
         controller: 'LoginCtrl'
       })  
+      .when('/404', {//si en la url es /
+        templateUrl: 'views/404.html',
+      })      
       .otherwise({//si en la url es cualquier otra
-        redirectTo: '/'
+        redirectTo: '/404'
       });
   })
-  .run(function($rootScope, $location, loginService){//Permiso para ver las diferentes rutas
-  var routespermissionLog=['/login'];//Ruta que se requiere para cuando no esta autenticado
-  var routespermissionHome=['/home'];//Ruta que se requiere para cuando esta autenticado
+  .run(function($rootScope, loginService){//Arranca con la aplicacion
+    $rootScope.$on('$routeChangeStart', function(){//Inicia el rootScope
 
-  $rootScope.$on('$routeChangeStart', function(){//Verifica las turas 
-
-    var dec = loginService.isLogged();//guarda en la variable dec si hay un usuario autenticado por medio de la funcion de la clase loginService
-
-    //verifica si es la ruta ingresada
-    // if(routespermissionHome.indexOf($location.path()) !==-1)
-    // {      
-    //   if(!dec){//si no esta autenticado, redirecciona a /login
-    //     $location.path('/login');
-    //   }
-    // }
-
-    //verifica si es la ruta ingresada
-    // if( routespermissionLog.indexOf($location.path()) !==-1)
-    // {
-    //   if(dec){//si esta autenticado, redirecciona a /home
-    //     $location.path('/home');
-    //   }
-    // }
+    if(!loginService.isLogged()){//Verifica si esta logeado
+      document.location.href = 'http://localhost:8080/sistemaDeFacturacion/';//redirecciona a login
+    }    
   });
 });
 

@@ -19,15 +19,22 @@ angular
     $routeProvider//Determina las rutas con sus controladores
       .when('/', {//si en la url es /
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
       })
       .when('/register', {//si en la url es /
         templateUrl: 'views/register.html',
-        controller: 'LoginCtrl'
+      })  
+      .when('/404', {//si en la url es /
+        templateUrl: 'views/404.html',
       })      
       .otherwise({//si en la url es cualquier otra
-        redirectTo: '/'
+        redirectTo: '/404'
       });
+  })
+  .run(function($rootScope, loginService){//Arranca con la aplicacion
+    $rootScope.$on('$routeChangeStart', function(){//Inicia el rootScope
+    
+    if(loginService.isLogged()){//Verifica si esta logeado
+      document.location.href = 'http://localhost:8080/sistemaDeFacturacion/admin.html';//redirecciona a login
+    }    
   });
-
-
+});
