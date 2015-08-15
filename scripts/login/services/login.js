@@ -15,8 +15,8 @@ angular.module('facturacionLoginApp')
   	var user = false;//variable para determinar si hay un usuario
   	var emailUser = null;//variable para guardar el email de usuario
 	return{		
-		loginPass:function(chatRef,email,pass){//Funcion para realizar login normal
-			chatRef.authWithPassword({
+		loginPass:function(firebaseRef,email,pass){//Funcion para realizar login normal
+			firebaseRef.authWithPassword({
 			  email    : email,
 			  password : pass
 			}, function(error, authData) {
@@ -40,8 +40,8 @@ angular.module('facturacionLoginApp')
 			  }
 			});
 		},		
-		newUser:function(chatRef,email,pass){//Funcion para crear un usuario nuevo
-			chatRef.createUser({
+		newUser:function(firebaseRef,email,pass){//Funcion para crear un usuario nuevo
+			firebaseRef.createUser({
 				email: email,
 				password: pass
 			},

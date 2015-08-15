@@ -15,8 +15,8 @@ angular.module('facturacionAdminApp')
   	var user = false;//variable para determinar si hay un usuario
   	var emailUser = null;//variable para guardar el email de usuario
 	return{				
-		logout:function(chatRef,scope){//Funcion para cerrar sesion						
-			chatRef.unauth();
+		logout:function(firebaseRef,scope){//Funcion para cerrar sesion						
+			firebaseRef.unauth();
 			scope.user='';//borra el usuario
 			document.location.href = 'http://localhost:8080/sistemaDeFacturacion/';//redirecciona a login
 		},		

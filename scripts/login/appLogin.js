@@ -11,20 +11,22 @@
 
 angular
   .module('facturacionLoginApp', [
+    'facturacionAdminApp.config',
     'ngAnimate',    
     'ngRoute',
+    'facturacionAdminApp.services',
     'firebase'
   ])
   .config(function ($routeProvider) {
     $routeProvider//Determina las rutas con sus controladores
       .when('/', {//si en la url es /
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/login.html'
       })
       .when('/registro', {//si en la url es /
-        templateUrl: 'views/registro.html',
+        templateUrl: 'views/registro.html'
       })  
       .when('/404', {//si en la url es /
-        templateUrl: 'views/404.html',
+        templateUrl: 'views/404.html'
       })      
       .otherwise({//si en la url es cualquier otra
         redirectTo: '/404'

@@ -122,7 +122,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#/registroVentas"><i class="fa fa-dot-circle-o"></i> Registro de Ventas</a></li>
+                <li><a href="#/registroVentasCRD"><i class="fa fa-dot-circle-o"></i> Registro de Ventas</a></li>
                 <li><a href="#/registroPedidos"><i class="fa fa-dot-circle-o"></i> Registro de Pedidos</a></li>                
                 <li><a href="#/clientes"><i class="fa fa-dot-circle-o"></i> Clientes</a></li>
               </ul>
@@ -238,7 +238,7 @@
                 <a href="javascript::;">
                   <i class="menu-icon fa fa-birthday-cake bg-red"></i>
                   <div class="menu-info">
-                    <h4 class="control-sidebar-subheading">Cumpleaño de Yeisony</h4>
+                    <h4 class="control-sidebar-subheading">Cumpleaños de Yeison</h4>
                     <p>Será el 04 de Octubre</p>
                   </div>
                 </a>
@@ -339,11 +339,11 @@
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
-                  Permitir redireccional correos
+                  Permitir re-direccionamiento correos
                   <input type="checkbox" class="pull-right" checked />
                 </label>
                 <p>
-                  Otros ajustes estan disponibles
+                  Otros ajustes están disponibles
                 </p>
               </div><!-- /.form-group -->
 
@@ -353,7 +353,7 @@
                   <input type="checkbox" class="pull-right" checked />
                 </label>
                 <p>
-                  Permitir ver nombres en los comentarios de los articulos
+                  Permitir ver nombres en los comentarios de los artículos
                 </p>
               </div><!-- /.form-group -->
 
@@ -422,8 +422,15 @@
 
      <!-- build:js({.tmp,app}) scripts/scripts.js -->
       <script src="scripts/admin/appAdmin.js"></script>
+      <script src="scripts/firebase/configFirebase.js"></script>
+      <script src="scripts/firebase/services.js"></script>
+      <script src="scripts/firebase/service.firebase.js"></script>
       <script src="scripts/admin/controllers/login.js"></script>
       <script src="scripts/admin/services/login.js"></script>      
+      <script src="scripts/admin/controllers/ventasCRD.js"></script>
+      <script src="scripts/admin/services/ventasCRD.js"></script>      
+      <script src="scripts/admin/controllers/ventasU.js"></script>
+      <script src="scripts/admin/services/ventasU.js"></script>      
       <!-- endbuild -->
 
     <!-- jQuery 2.1.4 -->
