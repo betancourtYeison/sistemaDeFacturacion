@@ -10,8 +10,8 @@
 
 //Controlador para Login la cual tiene 1 servicio ventasServiceCRD con su respectivo scope
 angular.module('facturacionAdminApp')
-  .controller('VentasCtrlCRD', ['$scope', 'ngTableParams', 'ventasServiceCRD', '$location', '$firebaseArray', 'firebaseRef', '$filter', 'syncData', 
-    function ($scope, ngTableParams, ventasServiceCRD, $location, $firebaseArray, firebaseRef, $filter, syncData) {
+  .controller('VentasCtrlCRD', ['$scope', 'ngTableParams', 'ventasServiceCRD', '$location', '$firebaseArray', 'firebaseRef', '$filter', 
+    function ($scope, ngTableParams, ventasServiceCRD, $location, $firebaseArray, firebaseRef, $filter) {
   
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/ventas");
 
@@ -33,6 +33,14 @@ angular.module('facturacionAdminApp')
             }
         }) 
     });     
+
+    $scope.ventas = {
+      username: '123456',
+      firstName: 'Yeison',
+      lastName: 'Betancourt',
+      email: 'yeisonbe10@hotmail.com',
+      password: '19931004'
+    };
     
     $scope.createNewUser = function () {//funcion que llama al servicio para crear usuario
       ventasServiceCRD.createNewUser(firebaseRef, $scope);      
@@ -42,12 +50,11 @@ angular.module('facturacionAdminApp')
       ventasServiceCRD.editUser($location, id);      
     };
 
-    $scope.deleteUser = function(id) {//funcion que llama al servicio para eliminar usuario
-      ventasServiceCRD.deleteUser($scope, syncData, id);      
+    $scope.deleteUser = function(id) {//funcion que llama al servicio para eliminar usuario        
+      ventasServiceCRD.deleteUser($scope, id);                
     }
 
     $scope.ordenarPor = function(orden,sort){
-      $scope.sort = sort;
-      $scope.ordenSeleccionado = orden;
+      ventasServiceCRD.ordenarPor($scope, orden, sort);            
     };
 }]);

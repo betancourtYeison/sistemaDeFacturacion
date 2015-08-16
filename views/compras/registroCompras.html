@@ -3,6 +3,7 @@
   <h1>
     Registro de Compras
   </h1>
+  <button type="btn brn-primary" ng-click="createNewUser()">Crear</button>
   <ol class="breadcrumb">
     <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
     <li><a href="#/registroCompras">Compras</a></li>
@@ -124,7 +125,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="venta in $data | orderBy:ordenSeleccionado | filter:buscar">
-                  <td sortable="id">{{ venta.id }}</td>
+                  <td>{{ venta.id }}</td>
                   <td>{{ venta.firstName }}</td>
                   <td>{{ venta.lastName }}</td>
                   <td>{{ venta.email }}</td>
