@@ -15,6 +15,7 @@ angular
     'ngAnimate',    
     'ngRoute',
     'facturacionAdminApp.services',
+    'ngTable',
     'firebase'
   ])
   .config(function ($routeProvider) {
@@ -37,7 +38,8 @@ angular
         templateUrl: 'views/ventas/clientes.html'
       }) 
       .when('/registroCompras', {//si en la url es /
-        templateUrl: 'views/compras/registroCompras.html'
+        templateUrl: 'views/compras/registroCompras.html',
+        controller: 'VentasCtrlCRD'
       }) 
       .when('/proveedores', {//si en la url es /
         templateUrl: 'views/compras/proveedores.html'
