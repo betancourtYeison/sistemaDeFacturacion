@@ -10,9 +10,7 @@
 
 //Controlador para Login la cual tiene 1 servicio ventasServiceU con su respectivo scope
 angular.module('facturacionAdminApp')
-  .controller('VentasCtrlU', ['$scope', 'ventasServiceU', '$location', '$firebaseArray', 'firebaseRef', '$routeParams', 'syncData', function ($scope, ventasServiceU, $location, $firebaseArray, firebaseRef, $routeParams, syncData) {
-      
-    //$scope.ventas = syncData('ventas/' + $routeParams.id);//Sincroniza el usuario que se va a editar
+  .controller('VentasCtrlU', ['$scope', 'ventasServiceU', '$location', '$firebaseArray', 'firebaseRef', '$routeParams', 'syncData', function ($scope, ventasServiceU, $location, $firebaseArray, firebaseRef, $routeParams, syncData) {      
 
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/ventas");
 
@@ -23,7 +21,6 @@ angular.module('facturacionAdminApp')
     });         
 
     $scope.updateUser = function () {//Funcion que llama al servicio para editar
-    	//console.log($scope.ventas);
       ventasServiceU.updateUser($scope, $location);
     }
 

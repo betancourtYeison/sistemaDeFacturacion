@@ -41,8 +41,13 @@ angular
         templateUrl: 'views/compras/registroCompras.html',
         controller: 'VentasCtrlCRD'
       }) 
-      .when('/proveedores', {//si en la url es /
-        templateUrl: 'views/compras/proveedores.html'
+      .when('/proveedoresCRD', {//si en la url es /
+        templateUrl: 'views/compras/proveedoresCRD.html',
+        controller: 'ProveedoresCtrlCRD'
+      })    
+      .when('/proveedoresU/:rut', {//si en la url es /
+        templateUrl: 'views/compras/proveedoresU.html',
+        controller: 'ProveedoresCtrlU'
       })    
       .when('/realizarInventario', {//si en la url es /
         templateUrl: 'views/inventario/realizarInventario.html'
