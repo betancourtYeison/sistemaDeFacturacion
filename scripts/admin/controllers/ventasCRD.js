@@ -43,6 +43,7 @@ angular.module('facturacionAdminApp')
     };
     
     $scope.createNewUser = function () {//funcion que llama al servicio para crear usuario
+      console.log('entro');
       ventasServiceCRD.createNewUser(firebaseRef, $scope);      
     }
 

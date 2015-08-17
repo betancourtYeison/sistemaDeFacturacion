@@ -17,7 +17,10 @@ angular.module('facturacionAdminApp')
 
     $scope.refproveedores = $firebaseArray(ref);
     $scope.master = {};
-    $scope.sort = true
+    $scope.sort = true;
+    $scope.proveedores = {
+        rut: ''
+    }
       
     $scope.refproveedores.$loaded().then(function(refproveedores) {
         $scope.tableParams = new ngTableParams({
@@ -32,7 +35,16 @@ angular.module('facturacionAdminApp')
                 $defer.resolve(pageData);
             }
         }) 
-    });     
+    });   
+    
+    $scope.exitsProvider = function () {//funcion que llama al servicio para crear usuario          
+      $scope.proveedor = $scope.refproveedores.$getRecord($scope.proveedores.rut);    
+      if($scope.proveedor != null){
+        return true;
+      }else{
+        return false;
+      }
+    }
     
     $scope.createNewProvider = function (form) {//funcion que llama al servicio para crear usuario  
       proveedoresServiceCRD.createNewProvider(firebaseRef, $scope, form);        
