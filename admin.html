@@ -126,9 +126,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#/registroVentasCRD"><i class="fa fa-dot-circle-o"></i> Registro de Ventas</a></li>
-                <li><a href="#/registroPedidos"><i class="fa fa-dot-circle-o"></i> Registro de Pedidos</a></li>                
-                <li><a href="#/clientes"><i class="fa fa-dot-circle-o"></i> Clientes</a></li>
+                <li><a href="#/registroVentasCRD"><i class="fa fa-dot-circle-o"></i> Registro de Ventas</a></li>                
+                <li><a href="#/clientesCRD"><i class="fa fa-dot-circle-o"></i> Clientes</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -138,7 +137,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#/registroCompras"><i class="fa fa-dot-circle-o"></i> Registro de Compra</a></li>
+                <li><a href="#/registroPedidos"><i class="fa fa-dot-circle-o"></i> Registro de Pedidos</a></li>
                 <li><a href="#/proveedoresCRD"><i class="fa fa-dot-circle-o"></i> Proveedores</a></li>
               </ul>
             </li>
@@ -152,18 +151,7 @@
                 <li><a href="#/realizarInventario"><i class="fa fa-dot-circle-o"></i> Realizar Inventario</a></li>
                 <li><a href="#/stockActual"><i class="fa fa-dot-circle-o"></i> Stock Actual</a></li>
               </ul>
-            </li>            
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-server"></i>
-                <span>Almacén</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#/registroEntradas"><i class="fa fa-dot-circle-o"></i> Registro de Entradas</a></li>
-                <li><a href="#/registroSalidas"><i class="fa fa-dot-circle-o"></i> Registro de Salidas</a></li>
-              </ul>
-            </li>
+            </li>                        
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-cubes"></i>
@@ -171,7 +159,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">                
-                <li><a href="#/listaProductos"><i class="fa fa-dot-circle-o"></i> Listado de Productos</a></li>
+                <li><a href="#/listaProductosCRD"><i class="fa fa-dot-circle-o"></i> Listado de Productos</a></li>
                 <li><a href="#/grupos"><i class="fa fa-dot-circle-o"></i> Grupos</a></li>
               </ul>
             </li>
@@ -195,8 +183,7 @@
               <ul class="treeview-menu">
                 <li><a href="#/reporteVentas"><i class="fa fa-dot-circle-o"></i> Reporte de Ventas</a></li>
                 <li><a href="#/reportePedidos"><i class="fa fa-dot-circle-o"></i> Reporte de Pedidos</a></li>  
-                <li><a href="#/reporteCompras"><i class="fa fa-dot-circle-o"></i> Reporte de Compras</a></li>
-                <li><a href="#/reporteAlmacen"><i class="fa fa-dot-circle-o"></i> Reporte de Almacén</a></li>                      
+                <li><a href="#/reporteCompras"><i class="fa fa-dot-circle-o"></i> Reporte de Compras</a></li>                              
                 <li><a href="#/reporteCCobrar"><i class="fa fa-dot-circle-o"></i> Reporte de C. por Cobrar</a></li>
                 <li><a href="#/reporteCPagar"><i class="fa fa-dot-circle-o"></i> Reporte de C. por Pagar</a></li>
                 <li><a href="#/reporteKardex"><i class="fa fa-dot-circle-o"></i> Reporte de Kardex</a></li>                  
@@ -432,18 +419,27 @@
       <script src="scripts/firebase/service.firebase.js"></script>
       <script src="scripts/admin/controllers/login.js"></script>
       <script src="scripts/admin/services/login.js"></script>      
-      <script src="scripts/admin/controllers/ventasCRD.js"></script>
-      <script src="scripts/admin/services/ventasCRD.js"></script>      
-      <script src="scripts/admin/controllers/ventasU.js"></script>
-      <script src="scripts/admin/services/ventasU.js"></script>      
+      <script src="scripts/admin/controllers/registroVentasCRD.js"></script>
+      <script src="scripts/admin/services/registroVentasCRD.js"></script>            
+      <script src="scripts/admin/controllers/clientesCRD.js"></script>
+      <script src="scripts/admin/services/clientesCRD.js"></script>      
+      <script src="scripts/admin/controllers/clientesU.js"></script>
+      <script src="scripts/admin/services/clientesU.js"></script>      
       <script src="scripts/admin/controllers/proveedoresCRD.js"></script>
       <script src="scripts/admin/services/proveedoresCRD.js"></script>      
       <script src="scripts/admin/controllers/proveedoresU.js"></script>
       <script src="scripts/admin/services/proveedoresU.js"></script>      
+      <script src="scripts/admin/controllers/listadoProductosCRD.js"></script>
+      <script src="scripts/admin/services/listadoProductosCRD.js"></script>      
+      <script src="scripts/admin/controllers/listadoProductosU.js"></script>
+      <script src="scripts/admin/services/listadoProductosU.js"></script>      
       <!-- endbuild -->
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>    
+    <!-- jsPDF -->
+    <script src="plugins/jsPDF/jspdf.js" type="text/javascript"></script>    
+    <script src="plugins/jsPDF/pdfFromHTML.js" type="text/javascript"></script>    
     <!-- DATA TABES SCRIPT -->
     <script src="plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>

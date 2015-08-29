@@ -14,6 +14,7 @@ angular.module('facturacionAdminApp')
     function ($scope, ngTableParams, proveedoresServiceCRD, $location, $firebaseArray, firebaseRef, $filter) {    
   
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/proveedores");
+    var toggle = true;    
 
     $scope.refproveedores = $firebaseArray(ref);
     $scope.master = {};
@@ -35,7 +36,116 @@ angular.module('facturacionAdminApp')
                 $defer.resolve(pageData);
             }
         }) 
-    });   
+    }); 
+    
+    $scope.loadNameProvider = function(){  
+      var tam = $scope.refproveedores.length;  
+      var arrayproveedores = {};
+            
+      if(toggle){
+        $('.dropdown-menu-proveedorName').click().toggle();
+        toggle = false;
+      }  
+
+      if($scope.providerName != ""){                 
+        for (var i=0; i<tam; i++) {
+          if($scope.providerName == $scope.refproveedores[i].name.substring(0,$scope.providerName.length)){            
+            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+                                                              rut: $scope.refproveedores[i].rut,
+                                                              phone: $scope.refproveedores[i].phone};            
+          }
+        };
+      }else{
+        $('.dropdown-menu-proveedorName').click().toggle();
+        toggle = true;
+      }   
+
+      if(jQuery.isEmptyObject(arrayproveedores)){
+        arrayproveedores[0] = {name : 'No existe'};
+        $scope.proveedores = arrayproveedores; 
+      }else{
+        $scope.proveedores = arrayproveedores;            
+      }
+
+      console.log($scope.proveedores);    
+    }  
+
+    $scope.loadRutProvider = function(){  
+      var tam = $scope.refproveedores.length;  
+      var arrayproveedores = {};
+            
+      if(toggle){
+        $('.dropdown-menu-proveedorRut').click().toggle();
+        toggle = false;
+      }  
+
+      if($scope.providerRut != ""){                 
+        for (var i=0; i<tam; i++) {
+          if($scope.providerRut == $scope.refproveedores[i].rut.substring(0,$scope.providerRut.length)){            
+            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+                                                              rut: $scope.refproveedores[i].rut,
+                                                              phone: $scope.refproveedores[i].phone};            
+          }
+        };
+      }else{
+        $('.dropdown-menu-proveedorRut').click().toggle();
+        toggle = true;
+      }   
+
+      if(jQuery.isEmptyObject(arrayproveedores)){
+        arrayproveedores[0] = {rut : 'No existe'};
+        $scope.proveedores = arrayproveedores; 
+      }else{
+        $scope.proveedores = arrayproveedores;            
+      }
+    }
+
+    $scope.loadPhoneProvider = function(){  
+      var tam = $scope.refproveedores.length;  
+      var arrayproveedores = {};
+            
+      if(toggle){
+        $('.dropdown-menu-proveedorPhone').click().toggle();
+        toggle = false;
+      }  
+
+      if($scope.providerPhone != ""){                 
+        for (var i=0; i<tam; i++) {
+          if($scope.providerPhone == $scope.refproveedores[i].phone.substring(0,$scope.providerPhone.length)){            
+            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+                                                              rut: $scope.refproveedores[i].rut,
+                                                              phone: $scope.refproveedores[i].phone};            
+          }
+        };
+      }else{
+        $('.dropdown-menu-proveedorPhone').click().toggle();
+        toggle = true;
+      }   
+
+      if(jQuery.isEmptyObject(arrayproveedores)){
+        arrayproveedores[0] = {phone : 'No existe'};
+        $scope.proveedores = arrayproveedores; 
+      }else{
+        $scope.proveedores = arrayproveedores;            
+      }
+    }
+   
+    $scope.changeProvider = function(id, name, rut, phone){//Cuando eliges un proveedor lo reemplaza en el campo de texto      
+      if(name != 'No existe'){
+        if(id == 'name'){
+          $('.dropdown-menu-proveedorName').click().toggle();
+        }else if(id == 'rut'){
+          $('.dropdown-menu-proveedorRut').click().toggle();
+        }else if(id == 'phone'){
+          $('.dropdown-menu-proveedorPhone').click().toggle();
+        }
+        toggle = true;        
+        $scope.providerName = name;
+        $scope.providerRut = rut;
+        $scope.providerPhone = phone;
+        $scope.proveedores = null;
+      }      
+    }   
     
     $scope.exitsProvider = function () {//funcion que llama al servicio para crear usuario          
       $scope.proveedor = $scope.refproveedores.$getRecord($scope.proveedores.rut);    

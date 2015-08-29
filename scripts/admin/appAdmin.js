@@ -25,20 +25,18 @@ angular
       })      
       .when('/registroVentasCRD', {//si en la url es /
         templateUrl: 'views/ventas/registroVentasCRD.html',
-        controller: 'VentasCtrlCRD'
+        controller: 'RegistroVentasCtrlCRD'
+      })       
+      .when('/clientesCRD', {//si en la url es /
+        templateUrl: 'views/ventas/clientesCRD.html',
+        controller: 'ClientesCtrlCRD'
       }) 
-      .when('/registroVentasU/:id', {//si en la url es /
-        templateUrl: 'views/ventas/registroVentasU.html',
-        controller: 'VentasCtrlU'
-      }) 
+      .when('/clientesU/:rut', {//si en la url es /
+        templateUrl: 'views/ventas/clientesU.html',
+        controller: 'ClientesCtrlU'
+      })   
       .when('/registroPedidos', {//si en la url es /
-        templateUrl: 'views/ventas/registroPedidos.html'
-      }) 
-      .when('/clientes', {//si en la url es /
-        templateUrl: 'views/ventas/clientes.html'
-      }) 
-      .when('/registroCompras', {//si en la url es /
-        templateUrl: 'views/compras/registroCompras.html',
+        templateUrl: 'views/compras/registroPedidos.html',
         controller: 'VentasCtrlCRD'
       }) 
       .when('/proveedoresCRD', {//si en la url es /
@@ -54,15 +52,14 @@ angular
       })     
       .when('/stockActual', {//si en la url es /
         templateUrl: 'views/inventario/stockActual.html'
+      })        
+      .when('/listaProductosCRD', {//si en la url es /
+        templateUrl: 'views/productos/listaProductosCRD.html',
+        controller: 'ListadoProductosCtrlCRD'
       })  
-      .when('/registroEntradas', {//si en la url es /
-        templateUrl: 'views/almacen/registroEntradas.html'
-      })           
-      .when('/registroSalidas', {//si en la url es /
-        templateUrl: 'views/almacen/registroSalidas.html'
-      })           
-      .when('/listaProductos', {//si en la url es /
-        templateUrl: 'views/productos/listaProductos.html'
+      .when('/listaProductosU/:codigoBarras', {//si en la url es /
+        templateUrl: 'views/productos/listaProductosU.html',
+        controller: 'ListadoProductosCtrlU'
       })           
       .when('/grupos', {//si en la url es /
         templateUrl: 'views/productos/grupos.html'
@@ -81,10 +78,7 @@ angular
       })           
       .when('/reporteCompras', {//si en la url es /
         templateUrl: 'views/reportes/reporteCompras.html'
-      })           
-      .when('/reporteAlmacen', {//si en la url es /
-        templateUrl: 'views/reportes/reporteAlmacen.html'
-      })           
+      })                 
       .when('/reporteCCobrar', {//si en la url es /
         templateUrl: 'views/reportes/reporteCCobrar.html'
       })           
