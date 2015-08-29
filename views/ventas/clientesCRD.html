@@ -25,7 +25,7 @@
             <div class="modal-body">
               <form id="form-proveedor-compra" role="form" name="form">
                  <div class="form-group has-feedback" ng-class="{'has-error': form.id.$invalid || exitsCustomer(), 'has-success': form.id.$valid}">           
-                    <input id="inputid" type="text" placeholder="Id"  class="form-control" name="id" ng-model="customers.id" required>                               
+                    <input id="inputid" type="text" autocomplete="off" placeholder="Id"  class="form-control" name="id" ng-model="customers.id" required>                               
                     <div ng-show="form.id.$dirty && form.id.$invalid || exitsCustomer()">
                       <p class="help-block text-danger" ng-show="form.id.$error.required">Campo obligatorio</p>
                       <p class="help-block text-danger" ng-show="exitsCustomer()">Ya existe un Cliente con este Id</p>

@@ -21,4 +21,5 @@ angular.module('facturacionAdminApp')
     	loginService.logout(firebaseRef(),$scope);//Cierra la sesion mediante la funcion que esta en la clase loginService
       	loginService.setUser(false);//Determina que no hay usuario mediante la funcion que esta en la clase loginService
     };
+    
 }]);

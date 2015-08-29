@@ -46,5 +46,4 @@ angular.module('facturacionAdminApp')
       		scope.ordenSeleccionado = orden;
 		}
 	};
-
 });

@@ -27,4 +27,5 @@ angular.module('facturacionAdminApp')
     $scope.cancel = function () {//Funcion que llama al servicio para cancelar la actualizacion
       listadoProductosServiceU.cancel($location);      
     };
+    
 }]);

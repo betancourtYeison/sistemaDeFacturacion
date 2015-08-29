@@ -11,7 +11,6 @@
 //Servicio de Login
 angular.module('facturacionAdminApp')
   .factory('loginService',function(){	
-
   	var user = false;//variable para determinar si hay un usuario
   	var emailUser = null;//variable para guardar el email de usuario
 	return{				
@@ -31,5 +30,4 @@ angular.module('facturacionAdminApp')
 			return user;
 		}
 	};
-
 });

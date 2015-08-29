@@ -169,4 +169,5 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       clientesServiceCRD.ordenarPor($scope, orden, sort);            
     };
+    
 }]);

@@ -12,30 +12,74 @@
 angular.module('facturacionAdminApp')
   .factory('registroVentasServiceCRD',function(){	
 	return{	
-		addProduct:function(scope){//Funcion para crear usuario
-			console.log(scope);
+		calculateValTot:function(producto,scope){//Funcion para crear usuario
+			producto.valorTot = (producto.valorUni*producto.cantidad);
+			scope.subTotal = 0;
+			
+			for (var i=0; i<scope.datosProducto.length; i++) {
+			  scope.subTotal += (scope.datosProducto[i].valorUni*scope.datosProducto[i].cantidad);                
+			};
+			
+			scope.impuesto = (scope.subTotal * 16)/100;
+			if(scope.descuento == 0){
+			  scope.total = (scope.subTotal + scope.impuesto);
+			}else{
+			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
+			}  
 		},			
-		createBil:function(firebaseRef, scope){//Funcion para crear usuario		    
+		calculateTot:function(scope){//Funcion para crear usuario
+			if(scope.descuento == 0){
+			  scope.total = (scope.subTotal + scope.impuesto);
+			}else{
+			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
+			}  
+		},
+		addProduct:function(customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago, scope){//Funcion para crear usuario
+			scope.datosProducto.push({referencia: productRef, 
+			                          codigo: productCod, 
+			                          cantidad: productCount, 
+			                          valorUni: productVal, 
+			                          valorTot: (productVal*productCount),
+			                          formaPago: productPago});      
+
+			scope.factura = {noFactura: scope.noFactura,
+			                  nombre: customerName,
+			                  cedula: customerId,
+			                  telefono: customerPhone,
+			                  datosProducto: scope.datosProducto};
+			                      
+			scope.subTotal += (productVal*productCount);      
+			scope.impuesto = (scope.subTotal * 16)/100;
+			if(scope.descuento == 0){
+			  scope.total = (scope.subTotal + scope.impuesto);
+			}else{
+			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
+			}      
+		},	
+		deleteProduct:function(id, scope){//Funcion para eliminar usuario
+			scope.datosProducto.reverse();
+	      	var productToDelete = scope.datosProducto[id];            
+	      	scope.datosProducto.splice(id,1);
+	      	scope.datosProducto.reverse();
+		},		
+		createBil:function(firebaseRef, scope){//Funcion para crear usuario			
 			firebaseRef('registroVentas/'+ scope.factura.noFactura).set({
 			  noFactura: scope.factura.noFactura,
 			  nombre: scope.factura.nombre,
 			  cedula: scope.factura.cedula,
 			  telefono: scope.factura.telefono
 			});  		
-		},
-		editUser:function(location, id){//Funcion para editar usuario
-			location.path('/registroVentasU/' + id);
-		},
-		deleteUser:function(scope, id){//Funcion para eliminar usuario
-			scope.refVentas.$remove(scope.refVentas.$getRecord(id)).then(function(){
-			  //data has been removed to our database  			  
-			  scope.tableParams.reload();
-  			});     
-		},
-		ordenarPor:function(scope, orden, sort){//Funcion para eliminar usuario
-			scope.sort = sort;
-      		scope.ordenSeleccionado = orden;
+
+			for (var i=0; i<scope.datosProducto.length; i++) {
+				firebaseRef('registroVentas/'+ scope.factura.noFactura+'/datosProducto/'+scope.datosProducto[i].codigo).set({
+				  referencia: scope.datosProducto[i].referencia,
+				  codigo: scope.datosProducto[i].codigo,
+				  cantidad: scope.datosProducto[i].cantidad,
+				  valorUni: scope.datosProducto[i].valorUni,
+				  valorTot: scope.datosProducto[i].valorTot,
+				  formaPago: scope.datosProducto[i].formaPago
+				});
+			} 			
 		}
 	};
-
 });

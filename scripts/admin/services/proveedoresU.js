@@ -11,7 +11,6 @@
 //Servicio de Ventas
 angular.module('facturacionAdminApp')
   .factory('proveedoresServiceU',function(){	
-  	
 	return{				
 		updateUser:function(scope, location){//Funcion para actualizar			
   			scope.refproveedores.$save(scope.proveedores).then(function() {
@@ -23,5 +22,4 @@ angular.module('facturacionAdminApp')
 			location.path('/proveedoresCRD');
 		}
 	};
-
 });

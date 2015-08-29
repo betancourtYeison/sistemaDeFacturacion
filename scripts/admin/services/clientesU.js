@@ -11,7 +11,6 @@
 //Servicio de Ventas
 angular.module('facturacionAdminApp')
   .factory('clientesServiceU',function(){	
-  	
 	return{				
 		updateCustomer:function(scope, location){//Funcion para actualizar			
   			scope.refclientes.$save(scope.clientes).then(function() {
@@ -23,5 +22,4 @@ angular.module('facturacionAdminApp')
 			location.path('/clientesCRD');
 		}
 	};
-
 });

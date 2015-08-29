@@ -14,7 +14,6 @@ angular.module('facturacionAdminApp')
     function ($scope, ngTableParams, listadoProductosServiceCRD, $location, $firebaseArray, firebaseRef, $filter) {    
   
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/listadoProductos");
-
     var toggle = true;      
 
     $scope.refproductsList = $firebaseArray(ref);
@@ -170,4 +169,5 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       listadoProductosServiceCRD.ordenarPor($scope, orden, sort);            
     };
+    
 }]);

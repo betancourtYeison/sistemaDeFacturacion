@@ -19,7 +19,7 @@
           <div class="col-md-2">            
             Datos del Cliente:  
             <div class="form-group has-feedback" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">           
-              <input id="inputname" type="text" class="form-control" placeholder="Buscar por nombre" aria-label="..." name="name" ng-model="customerName" ng-change="loadNameCustomer()" style="padding-right: 0px;" required/>
+              <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por nombre" aria-label="..." name="name" ng-model="customerName" ng-change="loadNameCustomer()" style="padding-right: 0px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerName">
                 <li ng-repeat="customer in customers">
                   <a style="cursor: pointer;" ng-click="changeCustomer('name', customer.name, customer.id, customer.phone)">
@@ -35,7 +35,7 @@
           <div class="col-md-2"> 
             &nbsp;                     
             <div class="form-group has-feedback" ng-class="{'has-error': form.id.$invalid, 'has-success': form.id.$valid}">           
-              <input id="inputId" type="text" class="form-control" placeholder="Buscar por cédula" aria-label="..." name="id" ng-model="customerId" ng-change="loadIdCustomer()" style="padding-right: 0px;" required/>  
+              <input id="inputId" type="text" class="form-control" autocomplete="off" placeholder="Buscar por cédula" aria-label="..." name="id" ng-model="customerId" ng-change="loadIdCustomer()" style="padding-right: 0px;" required/>  
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerId">
                 <li ng-repeat="customer in customers">
                   <a style="cursor: pointer;" ng-click="changeCustomer('id', customer.name, customer.id, customer.phone)">
@@ -51,7 +51,7 @@
           <div class="col-md-2">            
             &nbsp;
             <div class="form-group has-feedback" ng-class="{'has-error': form.phone.$invalid, 'has-success': form.phone.$valid}">           
-              <input id="inputPhone" type="text" class="form-control" placeholder="Buscar por teléfono" aria-label="..." name="phone" ng-model="customerPhone" ng-change="loadPhoneCustomer()" style="padding-right: 0px;" required/>                    
+              <input id="inputPhone" type="text" class="form-control" autocomplete="off" placeholder="Buscar por teléfono" aria-label="..." name="phone" ng-model="customerPhone" ng-change="loadPhoneCustomer()" style="padding-right: 0px;" required/>                    
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerPhone">
                 <li ng-repeat="customer in customers">
                   <a style="cursor: pointer;" ng-click="changeCustomer('phone', customer.name, customer.id, customer.phone)">
@@ -78,7 +78,7 @@
           <div class="col-md-2">  
             <div>Datos del Producto: 
               <div class="form-group has-feedback" ng-class="{'has-error': form.ref.$invalid, 'has-success': form.ref.$valid}">           
-                <input id="inputname" type="text" class="form-control" placeholder="Buscar por referencia" aria-label="..." name="ref" ng-model="productRef" ng-change="loadProductRef()" style="padding-right: 0px;" required/>    
+                <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por referencia" aria-label="..." name="ref" ng-model="productRef" ng-change="loadProductRef()" style="padding-right: 0px;" required/>    
                 <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productRef">
                   <li ng-repeat="product in productsList">                  
                     <a style="cursor: pointer;" ng-click="changeProduct('referencia', product.referencia, product.codigoBarras, product.precioUnitario)">
@@ -95,7 +95,7 @@
           <div class="col-md-2">  
             &nbsp;
             <div class="form-group has-feedback" ng-class="{'has-error': form.cod.$invalid, 'has-success': form.cod.$valid}">           
-              <input id="inputcod" type="text" class="form-control" placeholder="Buscar por código" aria-label="..." name="cod" ng-model="productCod" ng-change="loadProductCodigo()" style="padding-right: 0px;" required/>
+              <input id="inputcod" type="text" class="form-control" autocomplete="off" placeholder="Buscar por código" aria-label="..." name="cod" ng-model="productCod" ng-change="loadProductCodigo()" style="padding-right: 0px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productCod">
                 <li ng-repeat="product in productsList">
                   <a style="cursor: pointer;" ng-click="changeProduct('codigoBarras', product.referencia, product.codigoBarras, product.precioUnitario)">
@@ -111,7 +111,7 @@
           <div class="col-md-2"> 
             &nbsp;
             <div class="form-group has-feedback" ng-class="{'has-error': form.val.$invalid, 'has-success': form.val.$valid}">           
-              <input id="inputcod" type="text" class="form-control" placeholder="Buscar por precio" aria-label="..." name="val" ng-model="productVal" ng-change="loadProductValue()" style="padding-right: 5px;" required/>
+              <input id="inputcod" type="text" class="form-control" autocomplete="off" placeholder="Buscar por precio" aria-label="..." name="val" ng-model="productVal" ng-change="loadProductValue()" style="padding-right: 5px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productVal">
                 <li ng-repeat="product in productsList">
                   <a style="cursor: pointer;" ng-click="changeProduct('precioUnitario', product.referencia, product.codigoBarras, product.precioUnitario)">
@@ -220,7 +220,12 @@
                     <th style="border-bottom-style: hidden;"></th> 
                   </tr>  
                   <tr>
-                    <th style="border-right-style: hidden;"></th> 
+                    <th style="border-right-style: hidden;">
+                      <div ng-show="facturaRealizada" class="alert alert-success alert-dismissible" role="alert" style="padding: 6px 35px 6px 10px; margin-bottom: 0">
+                        <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span>Se ha guardado correctamente la factura.</span>
+                      </div>
+                    </th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th></th> 

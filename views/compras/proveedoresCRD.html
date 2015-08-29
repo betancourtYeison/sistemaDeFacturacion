@@ -5,8 +5,8 @@
   </h1>  
   <ol class="breadcrumb">
     <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
-    <li><a href="#/proveedores">Compras</a></li>
-    <li><a href="#/proveedores">Proveedores</a></li>
+    <li><a href="#/proveedoresCRD">Compras</a></li>    
+    <li class="active">Proveedores</li>
   </ol>
 </section>
 
@@ -25,7 +25,7 @@
             <div class="modal-body">
               <form id="form-proveedor-compra" role="form" name="form">
                  <div class="form-group has-feedback" ng-class="{'has-error': form.rut.$invalid || exitsProvider(), 'has-success': form.rut.$valid}">           
-                    <input id="inputrut" type="text" placeholder="RUT"  class="form-control" name="rut" ng-model="proveedores.rut" required>                               
+                    <input id="inputrut" type="text" autocomplete="off" placeholder="RUT"  class="form-control" name="rut" ng-model="proveedores.rut" required>                               
                     <div ng-show="form.rut.$dirty && form.rut.$invalid || exitsProvider()">
                       <p class="help-block text-danger" ng-show="form.rut.$error.required">Campo obligatorio</p>
                       <p class="help-block text-danger" ng-show="exitsProvider()">Ya existe un Proveedor con este RUT</p>

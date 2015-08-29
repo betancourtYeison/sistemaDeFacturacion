@@ -34,7 +34,7 @@
           </div>
       </div>
       <div class="form-group has-feedback" ng-class="{'has-error': form.precioUnitario.$invalid, 'has-success': form.precioUnitario.$valid}">           
-          <input id="inputprecioUnitario" type="number" placeholder="Precio Unitario"  class="form-control" name="precioUnitario" ng-model="productsList.precioUnitario" required>                               
+          <input id="inputprecioUnitario" type="text" placeholder="Precio Unitario"  class="form-control" name="precioUnitario" ng-model="productsList.precioUnitario" required>                               
           <div ng-show="form.precioUnitario.$dirty && form.precioUnitario.$invalid">
             <p class="help-block text-danger" ng-show="form.precioUnitario.$error.required">Campo obligatorio</p>
           </div>

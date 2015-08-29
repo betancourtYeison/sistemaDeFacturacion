@@ -11,7 +11,7 @@
 //Servicio de Ventas
 angular.module('facturacionAdminApp')
   .factory('clientesServiceCRD',function(){	
-	return{				
+	return{			
 		createNewCustomer:function(firebaseRef, scope, form){//Funcion para crear usuario
 			var onComplete = function(error) {
 			  if (!error) {

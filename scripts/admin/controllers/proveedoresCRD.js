@@ -171,4 +171,5 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       proveedoresServiceCRD.ordenarPor($scope, orden, sort);            
     };
+    
 }]);

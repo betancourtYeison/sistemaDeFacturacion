@@ -11,7 +11,6 @@
 //Servicio de Ventas
 angular.module('facturacionAdminApp')
   .factory('listadoProductosServiceU',function(){	
-  	
 	return{				
 		updateProduct:function(scope, location){//Funcion para actualizar			
   			scope.refproductsList.$save(scope.productsList).then(function() {
@@ -23,5 +22,4 @@ angular.module('facturacionAdminApp')
 			location.path('/listaProductosCRD');
 		}
 	};
-
 });

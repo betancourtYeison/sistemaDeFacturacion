@@ -37,7 +37,7 @@ angular
       })   
       .when('/registroPedidos', {//si en la url es /
         templateUrl: 'views/compras/registroPedidos.html',
-        controller: 'VentasCtrlCRD'
+        controller: 'RegistroVentasCtrlCRD'
       }) 
       .when('/proveedoresCRD', {//si en la url es /
         templateUrl: 'views/compras/proveedoresCRD.html',
