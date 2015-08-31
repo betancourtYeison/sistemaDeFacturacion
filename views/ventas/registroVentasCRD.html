@@ -65,7 +65,7 @@
             </div>        
           </div>
           <div class="col-md-2 pull-right"> 
-            <div>No. Factura: <input id="txt_fecha" type="text" class="col-md-2 form-control" ng-model="noFactura" disabled="">
+            <div>No. Factura: <input id="factura" type="text" class="col-md-2 form-control" ng-model="noFactura" disabled="">
             </div>
           </div>
           <div class="col-md-2 pull-right"> 
@@ -127,7 +127,7 @@
           <div class="col-md-2">  
             Cantidad del Producto:
             <div class="form-group has-feedback" ng-class="{'has-error': form.count.$invalid, 'has-success': form.count.$valid}">           
-              <input id="inputcod" type="number" class="form-control" placeholder="###" aria-label="..." name="count" ng-model="productCount" style="padding-right: 5px;" required/>
+              <input id="inputcod" type="text" class="form-control" placeholder="###" aria-label="..." name="count" ng-model="productCount" style="padding-right: 5px;" required/>
               <div ng-show="form.count.$dirty && form.count.$invalid">
                   <p class="help-block text-danger" ng-show="form.count.$error.required">Campo obligatorio</p>
                 </div> 
@@ -156,11 +156,11 @@
       <form id="form-registroFactura-compra" role="form2" name="form2">
         <div class="panel panel-primary" id="detalle_compra">                       
           <div class="panel-body">
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover">
+            <div id="divReport" class="table-responsive">
+              <table id="table" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th style="min-width: 150px;">
+                    <th id="referencia" style="min-width: 150px;">
                       Referencia                  
                       <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-referencia',true)"></span>
                       <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('referencia',false)"></span>                                    
@@ -170,15 +170,15 @@
                       <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-id',true)"></span>
                       <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('id',false)"></span>                                    
                     </th>
-                    <th style="min-width: 80px; width: 150px;">Valor Unitario</th>
+                    <th style="min-width: 80px; width: 150px;">Precio Unitario</th>
                     <th style="min-width: 80px; width: 150px;">Cantidad</th>
-                    <th style="min-width: 80px; width: 150px;">Valor Total</th>
+                    <th style="min-width: 80px; width: 150px;">Precio Total</th>
                     <th style="width:20px;"> </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="producto in datosProducto | orderBy:ordenSeleccionado | filter:buscar">
-                    <td sortable="id">{{ producto.referencia }}</td>
+                    <td sortable="id" id="refe">{{ producto.referencia }}</td>
                     <td>{{ producto.codigo }}</td>
                     <td>{{ producto.valorUni }}</td>
                     <td><input ng-change="calculateValTot(producto)" ng-model="producto.cantidad"/></td>
@@ -192,7 +192,7 @@
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-bottom-style: hidden;"></th> 
                     <th>Sub Total</th> 
-                    <th>{{subTotal}}</th> 
+                    <th id="subTotal">{{subTotal}}</th> 
                     <th style="border-bottom-style: hidden;"></th> 
                   </tr>  
                   <tr>
@@ -231,7 +231,12 @@
                     <th></th> 
                     <th>
                     <div class="text-center"><a ng-click="createBil()"><button type="button" class="btn btn-md btn-success btn-grabar-compra"><span class="glyphicon glyphicon-floppy-disk"></span> Generar Factura</button></a>
-                    </div>                    
+                    </div>  
+                    <div id="divButton" >
+                      <button id="btn-pdf" ng-click="printPDF()" type="bu" class="btn btn-default" >
+                        Generar PDF
+                      </button>
+                    </div>                  
                     </th> 
                     <th></th> 
                   </tr>                       

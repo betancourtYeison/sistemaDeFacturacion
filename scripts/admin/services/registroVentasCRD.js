@@ -58,6 +58,13 @@ angular.module('facturacionAdminApp')
 		},	
 		deleteProduct:function(id, scope){//Funcion para eliminar usuario
 			scope.datosProducto.reverse();
+			scope.subTotal -= (scope.datosProducto[id].valorTot);  
+		 	scope.impuesto = (scope.subTotal * 16)/100;
+		 	if(scope.descuento == 0){
+		 		scope.total = (scope.subTotal + scope.impuesto);
+		 	}else{
+		 		scope.total = (scope.subTotal + scope.impuesto)(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
+		 	}
 	      	var productToDelete = scope.datosProducto[id];            
 	      	scope.datosProducto.splice(id,1);
 	      	scope.datosProducto.reverse();
