@@ -63,7 +63,7 @@ angular.module('facturacionAdminApp')
 		 	if(scope.descuento == 0){
 		 		scope.total = (scope.subTotal + scope.impuesto);
 		 	}else{
-		 		scope.total = (scope.subTotal + scope.impuesto)(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
+		 		scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
 		 	}
 	      	var productToDelete = scope.datosProducto[id];            
 	      	scope.datosProducto.splice(id,1);
@@ -72,6 +72,7 @@ angular.module('facturacionAdminApp')
 		createBil:function(firebaseRef, scope){//Funcion para crear usuario			
 			firebaseRef('registroVentas/'+ scope.factura.noFactura).set({
 			  noFactura: scope.factura.noFactura,
+			  fecha: scope.fecha,
 			  nombre: scope.factura.nombre,
 			  cedula: scope.factura.cedula,
 			  telefono: scope.factura.telefono
