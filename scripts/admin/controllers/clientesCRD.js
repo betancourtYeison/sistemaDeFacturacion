@@ -38,7 +38,7 @@ angular.module('facturacionAdminApp')
         }) 
     }); 
     
-    $scope.loadNameCustomer = function(){  
+    $scope.loadNameCustomer = function(){
       var tam = $scope.refcustomers.length;  
       var arraycustomers = {};
             

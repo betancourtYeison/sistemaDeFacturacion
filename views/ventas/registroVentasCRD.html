@@ -14,68 +14,7 @@
 <section class="content"> 
   <div class="row" id="pdf2htmldiv">
     <div class="col-lg-12">      
-      <form id="form-registro-compra" role="form" name="form" ng-controller="ClientesCtrlCRD">
-        <div class="modal fade" id="newProvider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Cliente</h4>
-                <div id="errorProveedor" class="text-danger"></div>
-              </div>
-              <div class="modal-body">
-                <form id="form-proveedor-compra" role="form" name="form">
-                   <div class="form-group has-feedback" ng-class="{'has-error': form.id.$invalid || exitsCustomer(), 'has-success': form.id.$valid}">           
-                      <input id="inputid" type="text" autocomplete="off" placeholder="Id"  class="form-control" name="id" ng-model="customers.id" required>                               
-                      <div ng-show="form.id.$dirty && form.id.$invalid || exitsCustomer()">
-                        <p class="help-block text-danger" ng-show="form.id.$error.required">Campo obligatorio</p>
-                        <p class="help-block text-danger" ng-show="exitsCustomer()">Ya existe un Cliente con este Id</p>
-                      </div>
-                  </div>
-                  <div class="form-group has-feedback" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">           
-                      <input id="inputname" type="text" placeholder="Nombre"  class="form-control" name="name" ng-model="customers.name" required>                               
-                      <div ng-show="form.name.$dirty && form.name.$invalid">
-                        <p class="help-block text-danger" ng-show="form.name.$error.required">Campo obligatorio</p>
-                      </div>
-                  </div>               
-                  <div class="form-group has-feedback" ng-class="{'has-error': form.email.$invalid, 'has-success': form.email.$valid}">           
-                      <input id="inputEmail" type="email" placeholder="E-mail"  class="form-control" name="email" ng-model="customers.mail" required>                                 
-                      <div ng-show="form.email.$dirty && form.email.$invalid">
-                        <p class="help-block text-danger" ng-show="form.email.$error.required">Campo obligatorio</p>
-                        <p class="help-block text-danger" ng-show="form.email.$error.email">Email invalido</p>
-                      </div>
-                  </div>
-                  <div class="form-group has-feedback" ng-class="{'has-error': form.address.$invalid, 'has-success': form.address.$valid}">           
-                      <input id="inputaddress" type="text" placeholder="Dirección"  class="form-control" name="address" ng-model="customers.address" required>                               
-                      <div ng-show="form.address.$dirty && form.address.$invalid">
-                        <p class="help-block text-danger" ng-show="form.address.$error.required">Campo obligatorio</p>
-                      </div>
-                  </div>
-                  <div class="form-group has-feedback" ng-class="{'has-error': form.phone.$invalid, 'has-success': form.phone.$valid}">           
-                      <input id="inputphone" type="text" placeholder="Teléfono"  class="form-control" name="phone" ng-model="customers.phone" required>                               
-                      <div ng-show="form.phone.$dirty && form.phone.$invalid">
-                        <p class="help-block text-danger" ng-show="form.phone.$error.required">Campo obligatorio</p>
-                      </div>
-                  </div>  
-                  <div class="form-group has-feedback" ng-class="{'has-error': form.area.$invalid, 'has-success': form.area.$valid}">  
-                      <select id="inputarea" placeholder="Zona" class="form-control" name="area" ng-model="customers.area" required>
-                        <option>Zona Principal</option>
-                        <option>Zona Rural</option>
-                        <option>Zona Secundaria</option>
-                      </select> 
-                      <div ng-show="form.area.$dirty && form.area.$invalid">
-                        <p class="help-block text-danger" ng-show="form.area.$error.required">Campo obligatorio</p>
-                      </div>                   
-                  </div>                   
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>              
-                <button type="button" class="btn btn-primary btn-grabar-proveedor-compra" data-dismiss="modal" ng-click="createNewCustomer(form)" ng-disabled="form.$invalid || exitsCustomer()">Grabar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <form id="form-registro-compra" role="form" name="form" ng-controller="ClientesCtrlCRD">        
         <div class="row">
           <div class="col-md-2">            
             Datos del Cliente:  
@@ -140,12 +79,12 @@
             <div>Fecha: <input id="txt_fecha" type="text" class="col-md-2 form-control" ng-model="fecha" disabled="">
             </div>
           </div>
-        </div>      
+        </div>              
         <br>      
         <div class="row" ng-controller="ListadoProductosCtrlCRD">
           <div class="col-md-2">  
             <div>Datos del Producto: 
-              <div class="form-group has-feedback" ng-class="{'has-error': form.ref.$invalid, 'has-success': form.ref.$valid}">           
+              <div class="form-group has-feedback" ng-class="{'has-error': form.ref.$invalid, 'has-success': form.ref.$valid}">
                 <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por referencia" aria-label="..." name="ref" ng-model="productRef" ng-change="loadProductRef()" style="padding-right: 0px;" required/>    
                 <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productRef">
                   <li ng-repeat="product in productsList">                  
@@ -214,7 +153,7 @@
               </div>      
           </div>
           <div class="col-md-2">
-            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
+            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(productExists, customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
             </div>
           </div>
         </div>     
@@ -291,20 +230,19 @@
                     <th style="border-right-style: hidden;">
                       <div ng-show="facturaRealizada" class="alert alert-success alert-dismissible" role="alert" style="padding: 6px 35px 6px 10px; margin-bottom: 0">
                         <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <span>Se ha guardado correctamente la factura.</span>
+                        <span>Se ha guardado exitosamente la factura.</span>
+                      </div>
+                      <div ng-hide="productExists" class="alert alert-danger alert-dismissible" role="alert" style="padding: 6px 35px 6px 10px; margin-bottom: 0">
+                        <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span>No se puede agregar el producto porque no existe.</span>
                       </div>
                     </th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th></th> 
                     <th>
-                    <div class="text-center"><a ng-click="createBil()"><button type="button" class="btn btn-md btn-success btn-grabar-compra"><span class="glyphicon glyphicon-floppy-disk"></span> Generar Factura</button></a>
-                    </div>  
-                    <div id="divButton" >
-                      <button id="btn-pdf" ng-click="printPDF()" type="bu" class="btn btn-default" >
-                        Generar PDF
-                      </button>
-                    </div>                  
+                    <div class="text-center"><a ng-click="createBil()"><button type="button" ng-disabled="generarFactura" class="btn btn-md btn-success btn-grabar-compra"><span class="glyphicon glyphicon-floppy-disk"></span> Generar Factura</button></a>
+                    </div>                      
                     </th> 
                     <th></th> 
                   </tr>                       
@@ -314,6 +252,68 @@
           </div><!-- /.box-body -->
         </div>          
       </form>
+
+      <div class="modal fade" id="newProvider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="ClientesCtrlCRD">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Cliente</h4>
+                <div id="errorProveedor" class="text-danger"></div>
+              </div>
+              <div class="modal-body">
+                <form id="formModal-proveedor-compra" role="formModal" name="formModal">
+                   <div class="form-group has-feedback" ng-class="{'has-error': formModal.id.$invalid || exitsCustomer(), 'has-success': formModal.id.$valid}">           
+                      <input id="inputid" type="text" autocomplete="off" placeholder="Id"  class="form-control" name="id" ng-model="customers.id" required>                               
+                      <div ng-show="formModal.id.$dirty && formModal.id.$invalid || exitsCustomer()">
+                        <p class="help-block text-danger" ng-show="formModal.id.$error.required">Campo obligatorio</p>
+                        <p class="help-block text-danger" ng-show="exitsCustomer()">Ya existe un Cliente con este Id</p>
+                      </div>
+                  </div>
+                  <div class="form-group has-feedback" ng-class="{'has-error': formModal.name.$invalid, 'has-success': formModal.name.$valid}">           
+                      <input id="inputname" type="text" placeholder="Nombre"  class="form-control" name="name" ng-model="customers.name" required>                               
+                      <div ng-show="formModal.name.$dirty && formModal.name.$invalid">
+                        <p class="help-block text-danger" ng-show="formModal.name.$error.required">Campo obligatorio</p>
+                      </div>
+                  </div>               
+                  <div class="form-group has-feedback" ng-class="{'has-error': formModal.email.$invalid, 'has-success': formModal.email.$valid}">           
+                      <input id="inputEmail" type="email" placeholder="E-mail"  class="form-control" name="email" ng-model="customers.mail" required>                                 
+                      <div ng-show="formModal.email.$dirty && formModal.email.$invalid">
+                        <p class="help-block text-danger" ng-show="formModal.email.$error.required">Campo obligatorio</p>
+                        <p class="help-block text-danger" ng-show="formModal.email.$error.email">Email invalido</p>
+                      </div>
+                  </div>
+                  <div class="form-group has-feedback" ng-class="{'has-error': formModal.address.$invalid, 'has-success': formModal.address.$valid}">           
+                      <input id="inputaddress" type="text" placeholder="Dirección"  class="form-control" name="address" ng-model="customers.address" required>                               
+                      <div ng-show="formModal.address.$dirty && formModal.address.$invalid">
+                        <p class="help-block text-danger" ng-show="formModal.address.$error.required">Campo obligatorio</p>
+                      </div>
+                  </div>
+                  <div class="form-group has-feedback" ng-class="{'has-error': formModal.phone.$invalid, 'has-success': formModal.phone.$valid}">           
+                      <input id="inputphone" type="text" placeholder="Teléfono"  class="form-control" name="phone" ng-model="customers.phone" required>                               
+                      <div ng-show="formModal.phone.$dirty && formModal.phone.$invalid">
+                        <p class="help-block text-danger" ng-show="formModal.phone.$error.required">Campo obligatorio</p>
+                      </div>
+                  </div>  
+                  <div class="form-group has-feedback" ng-class="{'has-error': formModal.area.$invalid, 'has-success': formModal.area.$valid}">  
+                      <select id="inputarea" placeholder="Zona" class="form-control" name="area" ng-model="customers.area" required>
+                        <option>Zona Principal</option>
+                        <option>Zona Rural</option>
+                        <option>Zona Secundaria</option>
+                      </select> 
+                      <div ng-show="formModal.area.$dirty && formModal.area.$invalid">
+                        <p class="help-block text-danger" ng-show="formModal.area.$error.required">Campo obligatorio</p>
+                      </div>                   
+                  </div>                   
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>              
+                <button type="button" class="btn btn-primary btn-grabar-proveedor-compra" data-dismiss="modal" ng-click="createNewCustomer(formModal)" ng-disabled="formModal.$invalid || exitsCustomer()">Grabar</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 

@@ -19,6 +19,7 @@ angular.module('facturacionAdminApp')
     $scope.refproductsList = $firebaseArray(ref);
     $scope.master = {};
     $scope.sort = true;
+    $scope.productExists = false;
     $scope.productsList = {
         id: ''
     }
@@ -67,7 +68,9 @@ angular.module('facturacionAdminApp')
       if(jQuery.isEmptyObject(arrayproductsList)){
         arrayproductsList[0] = {referencia : 'No existe'};
         $scope.productsList = arrayproductsList; 
+        $scope.productExists = false;
       }else{
+        $scope.productExists = true;
         $scope.productsList = arrayproductsList;            
       }      
     }  
@@ -97,8 +100,10 @@ angular.module('facturacionAdminApp')
       if(jQuery.isEmptyObject(arrayproductsList)){
         arrayproductsList[0] = {codigoBarras : 'No existe'};
         $scope.productsList = arrayproductsList; 
+        $scope.productExists = false;
       }else{
         $scope.productsList = arrayproductsList;            
+        $scope.productExists = true;
       }
     }
 
@@ -125,10 +130,12 @@ angular.module('facturacionAdminApp')
       }   
 
       if(jQuery.isEmptyObject(arrayproductsList)){
-        arrayproductsList[0] = {precioUnitario : 'No existe'};
+        arrayproductsList[0] = {precioUnitario : 'No existe'};        
         $scope.productsList = arrayproductsList; 
+        $scope.productExists = false;
       }else{
         $scope.productsList = arrayproductsList;            
+        $scope.productExists = true;
       }
     }
    
