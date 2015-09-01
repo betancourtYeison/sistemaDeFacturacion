@@ -47,9 +47,13 @@ angular.module('facturacionAdminApp')
         toggle = false;
       }          
 
+      var tempRefproductsList;
+      var tempProductRef = $scope.productRef.toUpperCase();
+
       if($scope.productRef != undefined){                 
         for (var i=0; i<tam; i++) {
-          if($scope.productRef == $scope.refproductsList[i].referencia.substring(0,$scope.productRef.length)){            
+          tempRefproductsList = $scope.refproductsList[i].referencia.substring(0,$scope.productRef.length).toUpperCase();
+          if(tempProductRef == tempRefproductsList){            
             arrayproductsList[$scope.refproductsList[i].codigoBarras] = {referencia: $scope.refproductsList[i].referencia, 
                                                               codigoBarras: $scope.refproductsList[i].codigoBarras,
                                                               precioUnitario: $scope.refproductsList[i].precioUnitario};            

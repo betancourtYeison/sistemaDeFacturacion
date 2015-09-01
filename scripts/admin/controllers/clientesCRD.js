@@ -45,11 +45,15 @@ angular.module('facturacionAdminApp')
       if(toggle){
         $('.dropdown-menu-customerName').click().toggle();
         toggle = false;
-      }          
-
+      }      
+      
+      var tempRefcustomersName;
+      var tempCustomerName = $scope.customerName.toUpperCase();
+      
       if($scope.customerName != undefined){                 
         for (var i=0; i<tam; i++) {
-          if($scope.customerName == $scope.refcustomers[i].name.substring(0,$scope.customerName.length)){            
+          tempRefcustomersName = $scope.refcustomers[i].name.substring(0,$scope.customerName.length).toUpperCase();
+          if(tempCustomerName == tempRefcustomersName){            
             arraycustomers[$scope.refcustomers[i].id] = {name: $scope.refcustomers[i].name, 
                                                               id: $scope.refcustomers[i].id,
                                                               phone: $scope.refcustomers[i].phone};            

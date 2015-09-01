@@ -61,7 +61,7 @@ angular.module('facturacionAdminApp')
 
 $scope.datosProducto = [];
 
-for (var i=0; i<4; i++) {
+for (var i=0; i<27; i++) {
   $scope.datosProducto.push({referencia: '1111111', 
   codigo: '1'+i, 
   cantidad: '25', 
@@ -258,19 +258,78 @@ $scope.factura = {noFactura: 2,
           posY++;
         }
         
+
+        doc.setFontSize(10);
+        doc.setTextColor(242, 243, 248);
+        doc.text(10, 13, ((iteradorPaginas+1) +' de '+(noPaginas+1)));
+
         //añadir nueva pagina
         if((noPaginas!=0) && (iteradorPaginas<noPaginas)) {
           console.log('entro: '+noPaginas);
           doc.addPage();
+
         }
         //doc.save(save, 'factura '+$scope.factura.noFactura'.pdf');
         iteradorPaginas++;
      }
 
+        doc.setFillColor(72, 98, 163);
+        doc.rect(8, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(72, 98, 163);
+        doc.rect(8, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(72, 98, 163);
+        doc.rect(14, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(72, 98, 163);
+        doc.rect(14, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(218, 218, 218);
+        doc.rect(10.5, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(218, 218, 218);
+        doc.rect(10.5, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+
+        doc.setFillColor(218, 218, 218);
+        doc.rect(16.5, ((6.5)+(posY*0.6)), 2.7, 0.7, 'F');
+
+        doc.setFillColor(218, 218, 218);
+        doc.rect(16.5, ((7.25)+(posY*0.6)), 2.7, 0.7, 'F');
+
         doc.setFontSize(10);
-        doc.setTextColor(72, 98, 163, 1);
-        doc.text(1, ((7)+(posY*0.6)), 'Sub Total');
+        doc.setTextColor(242, 243, 248);
+        doc.text(8.5, ((7)+(posY*0.6)), 'Sub Total');
+
+        doc.setFontSize(10);
+        doc.setTextColor(242, 243, 248);
+        doc.text(14.3, ((7)+(posY*0.6)), 'Descuento %');
+
+        doc.setFontSize(10);
+        doc.setTextColor(242, 243, 248);
+        doc.text(8.5, ((7.7)+(posY*0.6)), 'Impuesto');
+
+        doc.setFontSize(10);
+        doc.setTextColor(242, 243, 248);
+        doc.text(14.3, ((7.7)+(posY*0.6)), 'Total');
+
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0, 0);
+        doc.text(11.7, ((7)+(posY*0.6)), ""+$scope.subTotal);
+
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0, 0);
+        doc.text(11.7, ((7.7)+(posY*0.6)), ""+$scope.impuesto);
+
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0, 0);
+        doc.text(17.2, ((7)+(posY*0.6)), ""+$scope.descuento);
+
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0, 0);
+        doc.text(17.2, ((7.7)+(posY*0.6)), ""+$scope.total);
         
+
         doc.output("dataurlnewwindow")
     }   
 }]);
