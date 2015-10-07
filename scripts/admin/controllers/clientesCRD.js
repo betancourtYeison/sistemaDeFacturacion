@@ -19,6 +19,7 @@ angular.module('facturacionAdminApp')
     $scope.refcustomers = $firebaseArray(ref);
     $scope.master = {};
     $scope.sort = true;
+    $scope.clienteCreado = false;
     $scope.customers = {
         id: ''
     }
@@ -159,7 +160,8 @@ angular.module('facturacionAdminApp')
     }
     
     $scope.createNewCustomer = function (form) {//funcion que llama al servicio para crear usuario  
-      clientesServiceCRD.createNewCustomer(firebaseRef, $scope, form);        
+      clientesServiceCRD.createNewCustomer(firebaseRef, $scope, form);
+      $scope.clienteCreado = true;        
     }
 
     $scope.editCustomer = function (id) {//funcion que llama al servicio para editar usuario
@@ -173,5 +175,9 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       clientesServiceCRD.ordenarPor($scope, orden, sort);            
     };
+
+    $scope.closeAlert = function () {//funcion que llama al servicio para crear usuario    
+      $scope.clienteCreado = false; 
+    }
     
 }]);

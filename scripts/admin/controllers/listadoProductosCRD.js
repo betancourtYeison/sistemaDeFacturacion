@@ -20,6 +20,7 @@ angular.module('facturacionAdminApp')
     $scope.master = {};
     $scope.sort = true;
     $scope.productExists = false;
+    $scope.productoCreado = false;
     $scope.productsList = {
         id: ''
     }
@@ -166,7 +167,8 @@ angular.module('facturacionAdminApp')
     }
     
     $scope.createNewProduct = function (form) {//funcion que llama al servicio para crear usuario  
-      listadoProductosServiceCRD.createNewProduct(firebaseRef, $scope, form);              
+      listadoProductosServiceCRD.createNewProduct(firebaseRef, $scope, form);
+      $scope.productoCreado = true;              
     }
 
     $scope.editProduct = function (id) {//funcion que llama al servicio para editar usuario
@@ -180,5 +182,8 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       listadoProductosServiceCRD.ordenarPor($scope, orden, sort);            
     };
-    
+
+    $scope.closeAlert = function () {//funcion que llama al servicio para crear usuario    
+      $scope.productoCreado = false; 
+    }
 }]);

@@ -15,11 +15,11 @@ angular.module('facturacionAdminApp')
 		updateProduct:function(scope, location){//Funcion para actualizar			
   			scope.refproductsList.$save(scope.productsList).then(function() {
   			  // data has been saved to our database  			  
-  			  location.path('/listaProductosCRD');
+  			  location.path('/stockActual');
   			});	
 		},
 		cancel:function(location){//Funcion para cancelar actualizacion
-			location.path('/listaProductosCRD');
+			location.path('/stockActual');
 		}
 	};
 });

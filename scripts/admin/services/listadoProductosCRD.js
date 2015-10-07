@@ -29,7 +29,8 @@ angular.module('facturacionAdminApp')
 			  descripcion: scope.productsList.descripcion,
 			  precioUnitario: scope.productsList.precioUnitario,
 			  grupo: scope.productsList.grupo,
-			  unidad: scope.productsList.unidad
+			  unidad: scope.productsList.unidad,
+			  cantidad: scope.productsList.cantidad
 			}, onComplete);  
 		},
 		editProduct:function(location, codigoBarras){//Funcion para editar usuario

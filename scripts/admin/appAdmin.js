@@ -51,7 +51,8 @@ angular
         templateUrl: 'views/inventario/realizarInventario.html'
       })     
       .when('/stockActual', {//si en la url es /
-        templateUrl: 'views/inventario/stockActual.html'
+        templateUrl: 'views/inventario/stockActual.html',
+        controller: 'ListadoProductosCtrlCRD'
       })        
       .when('/listaProductosCRD', {//si en la url es /
         templateUrl: 'views/productos/listaProductosCRD.html',

@@ -30,7 +30,7 @@ angular.module('facturacionAdminApp')
 			  address: scope.customers.address,
 			  phone: scope.customers.phone,
 			  area: scope.customers.area
-			}, onComplete);  
+			}, onComplete); 
 		},
 		editCustomer:function(location, id){//Funcion para editar usuario
 			location.path('/clientesU/' + id);
