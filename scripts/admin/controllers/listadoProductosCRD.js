@@ -40,34 +40,36 @@ angular.module('facturacionAdminApp')
         }) 
     }); 
     
-    $scope.loadProductRef = function(){  
+    $scope.loadProductDescrip = function(){  
       var tam = $scope.refproductsList.length;  
       var arrayproductsList = {};
             
       if(toggle){
-        $('.dropdown-menu-productRef').click().toggle();
+        $('.dropdown-menu-productDescrip').click().toggle();
         toggle = false;
-      }          
+      }              
 
-      var tempRefproductsList;
-      var tempProductRef = $scope.productRef.toUpperCase();
+      var tempDescripProductsList;
+      var tempProductDescrip = $scope.productDescrip.toUpperCase();      
 
-      if($scope.productRef != undefined){                 
+
+      if($scope.productDescrip != undefined){                 
         for (var i=0; i<tam; i++) {
-          tempRefproductsList = $scope.refproductsList[i].referencia.substring(0,$scope.productRef.length).toUpperCase();
-          if(tempProductRef == tempRefproductsList){            
+          tempDescripProductsList = $scope.refproductsList[i].descripcion.substring(0,$scope.productDescrip.length).toUpperCase();          
+          if(tempProductDescrip == tempDescripProductsList){                        
             arrayproductsList[$scope.refproductsList[i].codigoBarras] = {referencia: $scope.refproductsList[i].referencia, 
+                                                              descripcion: $scope.refproductsList[i].descripcion, 
                                                               codigoBarras: $scope.refproductsList[i].codigoBarras,
                                                               precioUnitario: $scope.refproductsList[i].precioUnitario};            
           }
         };
       }else{
-        $('.dropdown-menu-productRef').click().toggle();
+        $('.dropdown-menu-productDescrip').click().toggle();
         toggle = true;
-      }   
+      }      
 
       if(jQuery.isEmptyObject(arrayproductsList)){
-        arrayproductsList[0] = {referencia : 'No existe'};
+        arrayproductsList[0] = {descripcion : 'No existe'};
         $scope.productsList = arrayproductsList; 
         $scope.productExists = false;
       }else{
@@ -89,6 +91,7 @@ angular.module('facturacionAdminApp')
         for (var i=0; i<tam; i++) {
           if($scope.productCod == $scope.refproductsList[i].codigoBarras.substring(0,$scope.productCod.length)){            
             arrayproductsList[$scope.refproductsList[i].codigoBarras] = {referencia: $scope.refproductsList[i].referencia, 
+                                                              descripcion: $scope.refproductsList[i].descripcion, 
                                                               codigoBarras: $scope.refproductsList[i].codigoBarras,
                                                               precioUnitario: $scope.refproductsList[i].precioUnitario};            
           }
@@ -121,6 +124,7 @@ angular.module('facturacionAdminApp')
         for (var i=0; i<tam; i++) {
           if($scope.productVal == $scope.refproductsList[i].precioUnitario.substring(0,$scope.productVal.length)){            
             arrayproductsList[$scope.refproductsList[i].codigoBarras] = {referencia: $scope.refproductsList[i].referencia, 
+                                                              descripcion: $scope.refproductsList[i].descripcion, 
                                                               codigoBarras: $scope.refproductsList[i].codigoBarras,
                                                               precioUnitario: $scope.refproductsList[i].precioUnitario};            
           }
@@ -140,17 +144,18 @@ angular.module('facturacionAdminApp')
       }
     }
    
-    $scope.changeProduct = function(idClass, referencia, codigoBarras, precioUnitario){//Cuando eliges un Product lo reemplaza en el campo de texto      
-      if(referencia != 'No existe' && codigoBarras != 'No existe' && precioUnitario != 'No existe'){
-        if(idClass == 'referencia'){
-          $('.dropdown-menu-productRef').click().toggle();
+    $scope.changeProduct = function(idClass, referencia, descripcion, codigoBarras, precioUnitario){//Cuando eliges un Product lo reemplaza en el campo de texto      
+      if(descripcion != 'No existe' && codigoBarras != 'No existe' && precioUnitario != 'No existe'){
+        if(idClass == 'descripcion'){
+          $('.dropdown-menu-productDescrip').click().toggle();
         }else if(idClass == 'codigoBarras'){
           $('.dropdown-menu-productCod').click().toggle();
         }else if(idClass == 'precioUnitario'){
           $('.dropdown-menu-productVal').click().toggle();
         }        
-        toggle = true;        
+        toggle = true;                
         $scope.productRef = referencia;
+        $scope.productDescrip = descripcion;
         $scope.productCod = codigoBarras;
         $scope.productVal = precioUnitario;
         $scope.productsList = null;

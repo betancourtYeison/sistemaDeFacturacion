@@ -85,11 +85,11 @@
           <div class="col-md-2">  
             <div>Datos del Producto: 
               <div class="form-group has-feedback" ng-class="{'has-error': form.ref.$invalid, 'has-success': form.ref.$valid}">
-                <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por referencia" aria-label="..." name="ref" ng-model="productRef" ng-change="loadProductRef()" style="padding-right: 0px;" required/>    
-                <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productRef">
+                <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por descripción" aria-label="..." name="ref" ng-model="productDescrip" ng-change="loadProductDescrip()" style="padding-right: 0px;" required/>
+                <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productDescrip">
                   <li ng-repeat="product in productsList">                  
-                    <a style="cursor: pointer;" ng-click="changeProduct('referencia', product.referencia, product.codigoBarras, product.precioUnitario)">
-                        {{ product.referencia }}
+                    <a style="cursor: pointer;" ng-click="changeProduct('descripcion', product.referencia, product.descripcion, product.codigoBarras, product.precioUnitario)">
+                        {{ product.descripcion }}
                     </a>
                   </li>
                 </ul> 
@@ -105,7 +105,7 @@
               <input id="inputcod" type="text" class="form-control" autocomplete="off" placeholder="Buscar por código" aria-label="..." name="cod" ng-model="productCod" ng-change="loadProductCodigo()" style="padding-right: 0px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productCod">
                 <li ng-repeat="product in productsList">
-                  <a style="cursor: pointer;" ng-click="changeProduct('codigoBarras', product.referencia, product.codigoBarras, product.precioUnitario)">
+                  <a style="cursor: pointer;" ng-click="changeProduct('codigoBarras', product.referencia, product.descripcion, product.codigoBarras, product.precioUnitario)">
                       {{ product.codigoBarras }}
                   </a>
                 </li>
@@ -121,7 +121,7 @@
               <input id="inputcod" type="text" class="form-control" autocomplete="off" placeholder="Buscar por precio" aria-label="..." name="val" ng-model="productVal" ng-change="loadProductValue()" style="padding-right: 5px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-productVal">
                 <li ng-repeat="product in productsList">
-                  <a style="cursor: pointer;" ng-click="changeProduct('precioUnitario', product.referencia, product.codigoBarras, product.precioUnitario)">
+                  <a style="cursor: pointer;" ng-click="changeProduct('precioUnitario', product.referencia, product.descripcion, product.codigoBarras, product.precioUnitario)">
                       {{ product.precioUnitario }}
                   </a>
                 </li>
@@ -153,7 +153,7 @@
               </div>      
           </div>
           <div class="col-md-2">
-            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(productExists, customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
+            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(refproductsList, productExists, customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
             </div>
           </div>
         </div>     
@@ -166,26 +166,32 @@
             <div id="divReport" class="table-responsive">
               <table id="table" class="table table-bordered table-hover">
                 <thead>
-                  <tr>
-                    <th id="referencia" style="min-width: 150px;">
+                  <tr>                    
+                    <th id="descripcion" style="width: 400px;">
+                      Descripción                  
+                      <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-descripcion',true)"></span>
+                      <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('descripcion',false)"></span>                                    
+                    </th>
+                    <th id="referencia" style="width: 130px;">
                       Referencia                  
                       <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-referencia',true)"></span>
                       <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('referencia',false)"></span>                                    
                     </th>
-                    <th style="min-width: 80px; width: 150px;">
+                    <th style="width: 130px;">
                       Código                  
-                      <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-id',true)"></span>
-                      <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('id',false)"></span>                                    
+                      <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-codigo',true)"></span>
+                      <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('codigo',false)"></span>                                    
                     </th>
-                    <th style="min-width: 80px; width: 150px;">Precio Unitario</th>
-                    <th style="min-width: 80px; width: 150px;">Cantidad</th>
-                    <th style="min-width: 80px; width: 150px;">Precio Total</th>
+                    <th style="width: 130px;">Precio Unitario</th>
+                    <th style="width: 130px;">Cantidad</th>
+                    <th style="width: 130px;">Precio Total</th>
                     <th style="width:20px;"> </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="producto in datosProducto | orderBy:ordenSeleccionado | filter:buscar">
-                    <td sortable="id" id="refe">{{ producto.referencia }}</td>
+                  <tr ng-repeat="producto in datosProducto | orderBy:ordenSeleccionado | filter:buscar">                    
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.referencia }}</td>
                     <td>{{ producto.codigo }}</td>
                     <td>{{ producto.valorUni }}</td>
                     <td><input ng-change="calculateValTot(producto)" ng-model="producto.cantidad"/></td>
@@ -236,9 +242,14 @@
                         <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <span>No se puede agregar el producto porque no existe.</span>
                       </div>
+                      <div ng-hide="productCountMax" class="alert alert-danger alert-dismissible" role="alert" style="padding: 6px 35px 6px 10px; margin-bottom: 0">
+                        <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span>La cantidad de producto excede la cantidad actual del Stock.</span>
+                      </div>
                     </th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
+                    <th></th> 
                     <th></th> 
                     <th>
                     <div class="text-center"><a ng-click="createBil()"><button type="button" ng-disabled="generarFactura" class="btn btn-md btn-success btn-grabar-compra"><span class="glyphicon glyphicon-floppy-disk"></span> Generar Factura</button></a>

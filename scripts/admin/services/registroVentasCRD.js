@@ -34,8 +34,9 @@ angular.module('facturacionAdminApp')
 			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
 			}  
 		},
-		addProduct:function(customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago, scope){//Funcion para crear usuario
+		addProduct:function(customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago, scope){//Funcion para crear usuario
 			scope.datosProducto.push({referencia: productRef, 
+									  descripcion: productDescrip,
 			                          codigo: productCod, 
 			                          cantidad: productCount, 
 			                          valorUni: productVal, 
@@ -97,6 +98,10 @@ angular.module('facturacionAdminApp')
 			  location.path('/registroVentasCRD/');
 			},3000)			
 			
+		},
+		ordenarPor:function(scope, orden, sort){//Funcion para eliminar usuario
+			scope.sort = sort;
+      		scope.ordenSeleccionado = orden;
 		},
 		printPDF:function(scope){//Funcion para crear usuario			
 			var doc = new jsPDF('l', 'cm', [22, 14]);

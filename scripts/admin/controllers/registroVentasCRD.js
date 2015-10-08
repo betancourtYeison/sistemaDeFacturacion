@@ -29,6 +29,7 @@ angular.module('facturacionAdminApp')
     $scope.facturaRealizada = false;
     $scope.generarFactura = true;  
     $scope.productExists = true;  
+    $scope.productCountMax = true;  
 
     $scope.refVentas.$loaded().then(function(refVentas) {
         $scope.noFactura = refVentas.length + 1;
@@ -42,10 +43,26 @@ angular.module('facturacionAdminApp')
       registroVentasServiceCRD.calculateTot($scope);            
     }
     
-    $scope.addProduct = function (productExists, customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago ) {//funcion que llama al servicio para crear usuario                            
+    $scope.addProduct = function (refproductsList, productExists, customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago ) {//funcion que llama al servicio para crear usuario                                  
+      console.log(productCod);          
+      console.log(productCount);          
+      console.log("Empieza for");          
+      for (var i=0; i<refproductsList.length; i++) {   
+          console.log(refproductsList[i].codigoBarras);          
+          console.log(refproductsList[i].cantidad);
+          if((refproductsList[i].codigoBarras == productCod) && (productCount > refproductsList[i].cantidad)){            
+            console.log("entro al if");
+            console.log(refproductsList[i]);            
+            $scope.productCountMax = false;  
+            break;          
+          }else{
+            $scope.productCountMax = true;            
+          }
+      };    
+
       $scope.productExists = productExists;  
-      if($scope.productExists){
-        registroVentasServiceCRD.addProduct(customerName, customerId, customerPhone, productRef, productCod, productVal, productCount, productPago, $scope);            
+      if($scope.productExists && $scope.productCountMax){
+        registroVentasServiceCRD.addProduct(customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago, $scope);            
       }
     }
 
@@ -60,8 +77,13 @@ angular.module('facturacionAdminApp')
       $scope.facturaRealizada = true;      
     }
 
+    $scope.ordenarPor = function(orden,sort){
+      registroVentasServiceCRD.ordenarPor($scope, orden, sort);            
+    };
+
     $scope.closeAlert = function () {//funcion que llama al servicio para crear usuario    
       $scope.facturaRealizada = false; 
       $scope.productExists = true; 
+      $scope.productCountMax = true;  
     }
 }]);
