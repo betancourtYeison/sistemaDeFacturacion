@@ -35,27 +35,27 @@
                       <p class="help-block text-danger" ng-show="exitsCustomer()">Ya existe un Cliente con este Id</p>
                     </div>
                 </div>
-                <div class="form-group has-feedback" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">           
-                    <input id="inputname" type="text" placeholder="Nombre"  class="form-control" name="name" ng-model="customers.name" required>                               
+                <div class="form-group has-feedback" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">
+                    <input id="inputname" type="text" placeholder="Nombre"  class="form-control" name="name" ng-model="customers.nombre" required>                               
                     <div ng-show="form.name.$dirty && form.name.$invalid">
                       <p class="help-block text-danger" ng-show="form.name.$error.required">Campo obligatorio</p>
                     </div>
                 </div>               
-                <div class="form-group has-feedback" ng-class="{'has-error': form.email.$invalid, 'has-success': form.email.$valid}">           
-                    <input id="inputEmail" type="email" placeholder="E-mail"  class="form-control" name="email" ng-model="customers.mail" required>                                 
+                <div class="form-group has-feedback" ng-class="{'has-error': form.email.$invalid, 'has-success': form.email.$valid}">
+                    <input id="inputEmail" type="email" placeholder="E-mail"  class="form-control" name="email" ng-model="customers.correo" required>                                 
                     <div ng-show="form.email.$dirty && form.email.$invalid">
                       <p class="help-block text-danger" ng-show="form.email.$error.required">Campo obligatorio</p>
                       <p class="help-block text-danger" ng-show="form.email.$error.email">Email invalido</p>
                     </div>
                 </div>
                 <div class="form-group has-feedback" ng-class="{'has-error': form.address.$invalid, 'has-success': form.address.$valid}">           
-                    <input id="inputaddress" type="text" placeholder="Dirección"  class="form-control" name="address" ng-model="customers.address" required>                               
+                    <input id="inputaddress" type="text" placeholder="Dirección"  class="form-control" name="address" ng-model="customers.direccion" required>                               
                     <div ng-show="form.address.$dirty && form.address.$invalid">
                       <p class="help-block text-danger" ng-show="form.address.$error.required">Campo obligatorio</p>
                     </div>
                 </div>
-                <div class="form-group has-feedback" ng-class="{'has-error': form.phone.$invalid, 'has-success': form.phone.$valid}">           
-                    <input id="inputphone" type="text" placeholder="Teléfono"  class="form-control" name="phone" ng-model="customers.phone" required>                               
+                <div class="form-group has-feedback" ng-class="{'has-error': form.phone.$invalid, 'has-success': form.phone.$valid}">
+                    <input id="inputphone" type="text" placeholder="Teléfono"  class="form-control" name="phone" ng-model="customers.telefono" required>                               
                     <div ng-show="form.phone.$dirty && form.phone.$invalid">
                       <p class="help-block text-danger" ng-show="form.phone.$error.required">Campo obligatorio</p>
                     </div>
@@ -73,7 +73,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>              
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAlert()">Cerrar</button>              
               <button type="button" class="btn btn-primary btn-grabar-proveedor-compra" data-dismiss="modal" ng-click="createNewCustomer(form)" ng-disabled="form.$invalid || exitsCustomer()">Grabar</button>
             </div>         
           </div>
@@ -108,8 +108,8 @@
                   </th>
                   <th style="min-width: 80px;">
                     Nombre
-                    <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-name',true)"></span>
-                    <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('name',false)"></span> 
+                    <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-nombre',true)"></span>
+                    <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('nombre',false)"></span> 
                   </th>
                   <th style="min-width: 80px;">Email</th>
                   <th style="min-width: 80px;">Dirección</th>
@@ -122,10 +122,10 @@
               <tbody>
                 <tr ng-repeat="customer in $data | orderBy:ordenSeleccionado | filter:buscar">
                   <td>{{ customer.id }}</td>
-                  <td>{{ customer.name }}</td>                  
-                  <td>{{ customer.email }}</td>
-                  <td>{{ customer.address }}</td>
-                  <td>{{ customer.phone }}</td>
+                  <td>{{ customer.nombre }}</td>                  
+                  <td>{{ customer.correo }}</td>
+                  <td>{{ customer.direccion }}</td>
+                  <td>{{ customer.telefono }}</td>
                   <td>{{ customer.area }}</td>
                   <td><a ng-click="editCustomer(customer.id)" class="btn btn-small btn-primary">Edit</a></td>
                   <td><a ng-click="deleteCustomer(customer.id)" class="btn btn-small btn-danger">Delete</a></td>

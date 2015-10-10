@@ -126,9 +126,8 @@ angular.module('facturacionAdminApp')
 			  doc.addImage(imgData, 'JPEG', 1, 0, 3, 3);
 
 			  //Estilo de la tabla
-
 			  doc.setFillColor(72, 98, 163);
-			  doc.rect(1, 5, 18.2, 1, 'F');
+			  doc.rect(1, 5, 19.7, 1, 'F');
 			          
 			  if((noPaginas==0) || (iteradorPaginas==noPaginas)){
 			    datosLength = scope.datosProducto.length;
@@ -140,11 +139,11 @@ angular.module('facturacionAdminApp')
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
 			    if ((i%2)==0) {
 			      doc.setFillColor(253, 253, 253);
-			      doc.rect(1, filas, 18.2, 0.7, 'F');
+			      doc.rect(1, filas, 19.7, 0.7, 'F');
 			      filas+= 0.6;
 			    }else{
 			      doc.setFillColor(218, 218, 218);
-			      doc.rect(1, filas, 18.2, 0.7, 'F');
+			      doc.rect(1, filas, 19.7, 0.7, 'F');
 			      filas+= 0.6;
 			    }
 			  }
@@ -160,11 +159,11 @@ angular.module('facturacionAdminApp')
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(72, 98, 163, 1);
-			  doc.text(14, 1.5, 'Fecha: ');
+			  doc.text(16, 1.5, 'Fecha: ');
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(72, 98, 163, 1);
-			  doc.text(14, 2, 'Factura No. ');
+			  doc.text(16, 2, 'Factura No. ');
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(72, 98, 163, 1);
@@ -172,7 +171,7 @@ angular.module('facturacionAdminApp')
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(72, 98, 163, 1);
-			  doc.text(14, 3, 'Teléfono: ');
+			  doc.text(16, 3, 'Teléfono: ');
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
@@ -184,7 +183,7 @@ angular.module('facturacionAdminApp')
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
-			  doc.text(15.7, 3, '315 5554340 ');
+			  doc.text(17.7, 3, '315 5554340 ');
 
 			  //Datos del cliente
 			  doc.setFontSize(10);
@@ -201,28 +200,32 @@ angular.module('facturacionAdminApp')
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(72, 98, 163, 1);
-			  doc.text(14, 4.5, 'Teléfono: '); 
+			  doc.text(16, 4.5, 'Teléfono: '); 
 
 			  //Thead de la tabla de la factura
 			  doc.setFontSize(10);
 			  doc.setTextColor(242, 243, 248);
-			  doc.text(1.5, 5.5, 'Referencia'); 
+			  doc.text(1.5, 5.5, 'Descripción'); 
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(242, 243, 248);
-			  doc.text(8, 5.5, 'Código');
+			  doc.text(6.5, 5.5, 'Referencia'); 
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(242, 243, 248);
-			  doc.text(11, 5.5, 'Precio unitario');
+			  doc.text(10.5, 5.5, 'Código');
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(242, 243, 248);
-			  doc.text(14, 5.5, 'Cantidad');
+			  doc.text(13, 5.5, 'Precio unitario');
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(242, 243, 248);
-			  doc.text(17, 5.5, 'Precio Total');     
+			  doc.text(15.5, 5.5, 'Cantidad');
+
+			  doc.setFontSize(10);
+			  doc.setTextColor(242, 243, 248);
+			  doc.text(18, 5.5, 'Precio Total');     
 
 			  //Datos obtenidos del Scope
 			  doc.setFontSize(10);
@@ -235,22 +238,30 @@ angular.module('facturacionAdminApp')
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
-			  doc.text(15.7, 4.5, scope.factura.telefono);
+			  doc.text(17.7, 4.5, scope.factura.telefono);
 			 
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0);
-			  doc.text(15.2, 1.5, scope.fecha);
+			  doc.text(17.2, 1.5, scope.fecha);
 
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0);
-			  doc.text(15.8, 2, " "+scope.factura.noFactura);
+			  doc.text(17.8, 2, " "+scope.factura.noFactura);
 
 			  //Información de la tabla de la factura        
 			  posY = 0;
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);        
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(1.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].referencia); 
+			    doc.text(1.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].descripcion); 
+			    posY++;
+			  }
+
+			  posY = 0;
+			  doc.setFontSize(10);
+			  doc.setTextColor(0, 0, 0, 0);        
+			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
+			    doc.text(6.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].referencia); 
 			    posY++;
 			  }
 
@@ -258,7 +269,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(8, ((6.5)+(posY*0.6)), scope.datosProducto[i].codigo); 
+			    doc.text(10.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].codigo); 
 			    posY++;
 			  }
 
@@ -266,7 +277,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(11.3, ((6.5)+(posY*0.6)), scope.datosProducto[i].valorUni); 
+			    doc.text(13, ((6.5)+(posY*0.6)), scope.datosProducto[i].valorUni); 
 			    posY++;
 			  }
 
@@ -274,7 +285,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(14.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].cantidad); 
+			    doc.text(15.5, ((6.5)+(posY*0.6)), ""+scope.datosProducto[i].cantidad); 
 			    posY++;
 			  }
 
@@ -282,7 +293,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(17, ((6.5)+(posY*0.6)), " "+scope.datosProducto[i].valorTot); 
+			    doc.text(18, ((6.5)+(posY*0.6)), " "+scope.datosProducto[i].valorTot); 
 			    posY++;
 			  }
 			  
@@ -299,60 +310,68 @@ angular.module('facturacionAdminApp')
 			}
 
 			doc.setFillColor(72, 98, 163);
-			doc.rect(8, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(10, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(72, 98, 163);
-			doc.rect(8, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(10, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(72, 98, 163);
-			doc.rect(14, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(15.5, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(72, 98, 163);
-			doc.rect(14, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(15.5, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(218, 218, 218);
-			doc.rect(10.5, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(12.5, ((6.5)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(218, 218, 218);
-			doc.rect(10.5, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
+			doc.rect(12.5, ((7.25)+(posY*0.6)), 2.5, 0.7, 'F');
 
 			doc.setFillColor(218, 218, 218);
-			doc.rect(16.5, ((6.5)+(posY*0.6)), 2.7, 0.7, 'F');
+			doc.rect(18, ((6.5)+(posY*0.6)), 2.7, 0.7, 'F');
 
 			doc.setFillColor(218, 218, 218);
-			doc.rect(16.5, ((7.25)+(posY*0.6)), 2.7, 0.7, 'F');
+			doc.rect(18, ((7.25)+(posY*0.6)), 2.7, 0.7, 'F');
 
 			doc.setFontSize(10);
 			doc.setTextColor(242, 243, 248);
-			doc.text(8.5, ((7)+(posY*0.6)), 'Sub Total');
+			doc.text(10.5, ((7)+(posY*0.6)), 'Sub Total');
 
 			doc.setFontSize(10);
 			doc.setTextColor(242, 243, 248);
-			doc.text(14.3, ((7)+(posY*0.6)), 'Descuento %');
+			doc.text(15.8, ((7)+(posY*0.6)), 'Descuento %');
 
 			doc.setFontSize(10);
 			doc.setTextColor(242, 243, 248);
-			doc.text(8.5, ((7.7)+(posY*0.6)), 'Impuesto');
+			doc.text(10.5, ((7.7)+(posY*0.6)), 'Impuesto');
 
 			doc.setFontSize(10);
 			doc.setTextColor(242, 243, 248);
-			doc.text(14.3, ((7.7)+(posY*0.6)), 'Total');
+			doc.text(15.8, ((7.7)+(posY*0.6)), 'Total');
 
 			doc.setFontSize(10);
 			doc.setTextColor(0, 0, 0, 0);
-			doc.text(10.7, ((7)+(posY*0.6)), ""+scope.subTotal);
+			doc.text(12.7, ((7)+(posY*0.6)), ""+scope.subTotal);
 
 			doc.setFontSize(10);
 			doc.setTextColor(0, 0, 0, 0);
-			doc.text(10.7, ((7.7)+(posY*0.6)), ""+scope.impuesto);
+			doc.text(12.7, ((7.7)+(posY*0.6)), ""+scope.impuesto);
 
 			doc.setFontSize(10);
 			doc.setTextColor(0, 0, 0, 0);
-			doc.text(17.2, ((7)+(posY*0.6)), ""+scope.descuento);
+			doc.text(18.2, ((7)+(posY*0.6)), ""+scope.descuento);
 
 			doc.setFontSize(10);
 			doc.setTextColor(0, 0, 0, 0);
-			doc.text(17.2, ((7.7)+(posY*0.6)), ""+scope.total);
+			doc.text(18.2, ((7.7)+(posY*0.6)), ""+scope.total);
+
+			doc.setFontSize(10);
+			doc.setTextColor(0, 0, 0);
+			doc.text(1, 13.8, ('Atendido por: '+scope.user));
+
+			doc.setFontSize(10);
+			doc.setTextColor(0, 0, 0);
+			doc.text(16, 13.8, ('Hora de facturación: '+scope.hora));
 
 			//doc.output("dataurlnewwindow")
 			doc.save('Factura No. '+scope.factura.noFactura+'(CreArte-Web).pdf');

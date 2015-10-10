@@ -17,6 +17,7 @@ angular.module('facturacionAdminApp')
     var f = new Date();
     
     $scope.fecha = (f.getMonth() +1) + "/" + f.getDate() + "/" +  f.getFullYear();  
+    $scope.hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
     $scope.refVentas = $firebaseArray(ref);
     $scope.master = {};
     $scope.factura = [];
@@ -30,10 +31,16 @@ angular.module('facturacionAdminApp')
     $scope.generarFactura = true;  
     $scope.productExists = true;  
     $scope.productCountMax = true;  
+    $scope.productCountMaxVlr = 0;
 
     $scope.refVentas.$loaded().then(function(refVentas) {
         $scope.noFactura = refVentas.length + 1;
     }); 
+
+    var authData = firebaseRef().getAuth();
+    if(authData){
+      $scope.user = authData.password.email;          
+    }  
 
     $scope.calculateValTot = function (producto) {//funcion que llama al servicio para crear usuario                        
       registroVentasServiceCRD.calculateValTot(producto, $scope);      
@@ -44,19 +51,12 @@ angular.module('facturacionAdminApp')
     }
     
     $scope.addProduct = function (refproductsList, productExists, customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago ) {//funcion que llama al servicio para crear usuario                                  
-      console.log(productCod);          
-      console.log(productCount);          
-      console.log("Empieza for");          
+      
       for (var i=0; i<refproductsList.length; i++) {   
-          console.log(refproductsList[i].codigoBarras);          
-          console.log(refproductsList[i].cantidad);
-          if((refproductsList[i].codigoBarras == productCod) && (productCount > refproductsList[i].cantidad)){            
-            console.log("entro al if");
-            console.log(refproductsList[i]);            
+          if((refproductsList[i].codigoBarras == productCod) && (productCount > refproductsList[i].cantidad)){                    
             $scope.productCountMax = false;  
+            $scope.productCountMaxVlr = refproductsList[i].cantidad;
             break;          
-          }else{
-            $scope.productCountMax = true;            
           }
       };    
 

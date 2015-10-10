@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Registro de Ventas
+    Registro de Ventas 
   </h1>
   <ol class="breadcrumb">
     <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
@@ -22,8 +22,8 @@
               <input id="inputname" type="text" class="form-control" autocomplete="off" placeholder="Buscar por nombre" aria-label="..." name="name" ng-model="customerName" ng-change="loadNameCustomer()" style="padding-right: 0px;" required/>
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerName">
                 <li ng-repeat="customer in customers">
-                  <a style="cursor: pointer;" ng-click="changeCustomer('name', customer.name, customer.id, customer.phone)">
-                      {{ customer.name }}
+                  <a style="cursor: pointer;" ng-click="changeCustomer('nombre', customer.nombre, customer.id, customer.telefono)">
+                      {{ customer.nombre }}
                   </a>
                 </li>
               </ul> 
@@ -38,7 +38,7 @@
               <input id="inputId" type="text" class="form-control" autocomplete="off" placeholder="Buscar por cédula" aria-label="..." name="id" ng-model="customerId" ng-change="loadIdCustomer()" style="padding-right: 0px;" required/>  
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerId">
                 <li ng-repeat="customer in customers">
-                  <a style="cursor: pointer;" ng-click="changeCustomer('id', customer.name, customer.id, customer.phone)">
+                  <a style="cursor: pointer;" ng-click="changeCustomer('id', customer.nombre, customer.id, customer.telefono)">
                       {{ customer.id }}
                   </a>
                 </li>
@@ -54,8 +54,8 @@
               <input id="inputPhone" type="text" class="form-control" autocomplete="off" placeholder="Buscar por teléfono" aria-label="..." name="phone" ng-model="customerPhone" ng-change="loadPhoneCustomer()" style="padding-right: 0px;" required/>                    
               <ul class="dropdown-menu dropdown-menu-right dropdown-menu-customerPhone">
                 <li ng-repeat="customer in customers">
-                  <a style="cursor: pointer;" ng-click="changeCustomer('phone', customer.name, customer.id, customer.phone)">
-                      {{ customer.phone }}
+                  <a style="cursor: pointer;" ng-click="changeCustomer('telefono', customer.nombre, customer.id, customer.telefono)">
+                      {{ customer.telefono }}
                   </a>
                 </li>
               </ul>  
@@ -134,7 +134,7 @@
           <div class="col-md-2">  
             Cantidad del Producto:
             <div class="form-group has-feedback" ng-class="{'has-error': form.count.$invalid, 'has-success': form.count.$valid}">           
-              <input id="inputcod" type="text" class="form-control" placeholder="###" aria-label="..." name="count" ng-model="productCount" style="padding-right: 5px;" required/>
+              <input id="inputcod" type="number" class="form-control" placeholder="###" aria-label="..." name="count" ng-model="productCount" style="padding-right: 5px;" required/>
               <div ng-show="form.count.$dirty && form.count.$invalid">
                   <p class="help-block text-danger" ng-show="form.count.$error.required">Campo obligatorio</p>
                 </div> 
@@ -203,12 +203,14 @@
                   <tr>
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
+                    <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-bottom-style: hidden;"></th> 
                     <th>Sub Total</th> 
                     <th id="subTotal">{{subTotal}}</th> 
                     <th style="border-bottom-style: hidden;"></th> 
                   </tr>  
                   <tr>
+                    <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-bottom-style: hidden;"></th> 
@@ -219,12 +221,14 @@
                   <tr>
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
+                    <th style="border-right-style: hidden; border-bottom-style: hidden;"></th> 
                     <th style="border-bottom-style: hidden;"></th> 
                     <th>Descuento %</th> 
                     <th><input ng-change="calculateTot()" ng-model="descuento"/></th> 
                     <th style="border-bottom-style: hidden;"></th> 
                   </tr>  
                   <tr>
+                    <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th></th> 
@@ -244,12 +248,12 @@
                       </div>
                       <div ng-hide="productCountMax" class="alert alert-danger alert-dismissible" role="alert" style="padding: 6px 35px 6px 10px; margin-bottom: 0">
                         <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <span>La cantidad de producto excede la cantidad actual del Stock.</span>
+                        <span>La cantidad de producto excede la cantidad actual del Stock que es: {{productCountMaxVlr}}.</span>
                       </div>
                     </th> 
                     <th style="border-right-style: hidden;"></th> 
                     <th style="border-right-style: hidden;"></th> 
-                    <th></th> 
+                    <th style="border-right-style: hidden;"></th> 
                     <th></th> 
                     <th>
                     <div class="text-center"><a ng-click="createBil()"><button type="button" ng-disabled="generarFactura" class="btn btn-md btn-success btn-grabar-compra"><span class="glyphicon glyphicon-floppy-disk"></span> Generar Factura</button></a>

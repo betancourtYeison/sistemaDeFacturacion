@@ -19,6 +19,7 @@ angular.module('facturacionAdminApp')
     $scope.refproveedores = $firebaseArray(ref);
     $scope.master = {};
     $scope.sort = true;
+    $scope.proveedorCreado = false;
     $scope.proveedores = {
         rut: ''
     }
@@ -49,10 +50,10 @@ angular.module('facturacionAdminApp')
 
       if($scope.providerName != ""){                 
         for (var i=0; i<tam; i++) {
-          if($scope.providerName == $scope.refproveedores[i].name.substring(0,$scope.providerName.length)){            
-            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+          if($scope.providerName == $scope.refproveedores[i].nombre.substring(0,$scope.providerName.length)){            
+            arrayproveedores[$scope.refproveedores[i].rut] = {nombre: $scope.refproveedores[i].nombre, 
                                                               rut: $scope.refproveedores[i].rut,
-                                                              phone: $scope.refproveedores[i].phone};            
+                                                              telefono: $scope.refproveedores[i].telefono};            
           }
         };
       }else{
@@ -61,7 +62,7 @@ angular.module('facturacionAdminApp')
       }   
 
       if(jQuery.isEmptyObject(arrayproveedores)){
-        arrayproveedores[0] = {name : 'No existe'};
+        arrayproveedores[0] = {nombre : 'No existe'};
         $scope.proveedores = arrayproveedores; 
       }else{
         $scope.proveedores = arrayproveedores;            
@@ -82,9 +83,9 @@ angular.module('facturacionAdminApp')
       if($scope.providerRut != ""){                 
         for (var i=0; i<tam; i++) {
           if($scope.providerRut == $scope.refproveedores[i].rut.substring(0,$scope.providerRut.length)){            
-            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+            arrayproveedores[$scope.refproveedores[i].rut] = {nombre: $scope.refproveedores[i].nombre, 
                                                               rut: $scope.refproveedores[i].rut,
-                                                              phone: $scope.refproveedores[i].phone};            
+                                                              telefono: $scope.refproveedores[i].telefono};            
           }
         };
       }else{
@@ -111,10 +112,10 @@ angular.module('facturacionAdminApp')
 
       if($scope.providerPhone != ""){                 
         for (var i=0; i<tam; i++) {
-          if($scope.providerPhone == $scope.refproveedores[i].phone.substring(0,$scope.providerPhone.length)){            
-            arrayproveedores[$scope.refproveedores[i].rut] = {name: $scope.refproveedores[i].name, 
+          if($scope.providerPhone == $scope.refproveedores[i].telefono.substring(0,$scope.providerPhone.length)){            
+            arrayproveedores[$scope.refproveedores[i].rut] = {nombre: $scope.refproveedores[i].nombre, 
                                                               rut: $scope.refproveedores[i].rut,
-                                                              phone: $scope.refproveedores[i].phone};            
+                                                              telefono: $scope.refproveedores[i].telefono};            
           }
         };
       }else{
@@ -123,26 +124,26 @@ angular.module('facturacionAdminApp')
       }   
 
       if(jQuery.isEmptyObject(arrayproveedores)){
-        arrayproveedores[0] = {phone : 'No existe'};
+        arrayproveedores[0] = {telefono : 'No existe'};
         $scope.proveedores = arrayproveedores; 
       }else{
         $scope.proveedores = arrayproveedores;            
       }
     }
    
-    $scope.changeProvider = function(id, name, rut, phone){//Cuando eliges un proveedor lo reemplaza en el campo de texto      
-      if(name != 'No existe'){
-        if(id == 'name'){
+    $scope.changeProvider = function(id, nombre, rut, telefono){//Cuando eliges un proveedor lo reemplaza en el campo de texto      
+      if(nombre != 'No existe'){
+        if(id == 'nombre'){
           $('.dropdown-menu-proveedorName').click().toggle();
         }else if(id == 'rut'){
           $('.dropdown-menu-proveedorRut').click().toggle();
-        }else if(id == 'phone'){
+        }else if(id == 'telefono'){
           $('.dropdown-menu-proveedorPhone').click().toggle();
         }
         toggle = true;        
-        $scope.providerName = name;
+        $scope.providerName = nombre;
         $scope.providerRut = rut;
-        $scope.providerPhone = phone;
+        $scope.providerPhone = telefono;
         $scope.proveedores = null;
       }      
     }   
@@ -157,7 +158,8 @@ angular.module('facturacionAdminApp')
     }
     
     $scope.createNewProvider = function (form) {//funcion que llama al servicio para crear usuario  
-      proveedoresServiceCRD.createNewProvider(firebaseRef, $scope, form);        
+      proveedoresServiceCRD.createNewProvider(firebaseRef, $scope, form);   
+      $scope.proveedorCreado = true;     
     }
 
     $scope.editProvider = function (rut) {//funcion que llama al servicio para editar usuario
@@ -171,5 +173,9 @@ angular.module('facturacionAdminApp')
     $scope.ordenarPor = function(orden,sort){
       proveedoresServiceCRD.ordenarPor($scope, orden, sort);            
     };
+
+    $scope.closeAlert = function () {//funcion que llama al servicio para crear usuario    
+      $scope.proveedorCreado = false; 
+    }
     
 }]);

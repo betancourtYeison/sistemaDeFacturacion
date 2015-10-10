@@ -53,11 +53,11 @@ angular.module('facturacionAdminApp')
       
       if($scope.customerName != undefined){                 
         for (var i=0; i<tam; i++) {
-          tempRefcustomersName = $scope.refcustomers[i].name.substring(0,$scope.customerName.length).toUpperCase();
+          tempRefcustomersName = $scope.refcustomers[i].nombre.substring(0,$scope.customerName.length).toUpperCase();
           if(tempCustomerName == tempRefcustomersName){            
-            arraycustomers[$scope.refcustomers[i].id] = {name: $scope.refcustomers[i].name, 
+            arraycustomers[$scope.refcustomers[i].id] = {nombre: $scope.refcustomers[i].nombre, 
                                                               id: $scope.refcustomers[i].id,
-                                                              phone: $scope.refcustomers[i].phone};            
+                                                              telefono: $scope.refcustomers[i].telefono};            
           }
         };
       }else{
@@ -66,7 +66,7 @@ angular.module('facturacionAdminApp')
       }   
 
       if(jQuery.isEmptyObject(arraycustomers)){
-        arraycustomers[0] = {name : 'No existe'};
+        arraycustomers[0] = {nombre : 'No existe'};
         $scope.customers = arraycustomers; 
       }else{
         $scope.customers = arraycustomers;            
@@ -85,9 +85,9 @@ angular.module('facturacionAdminApp')
       if($scope.customerId != undefined){                 
         for (var i=0; i<tam; i++) {
           if($scope.customerId == $scope.refcustomers[i].id.substring(0,$scope.customerId.length)){            
-            arraycustomers[$scope.refcustomers[i].id] = {name: $scope.refcustomers[i].name, 
+            arraycustomers[$scope.refcustomers[i].id] = {nombre: $scope.refcustomers[i].nombre, 
                                                               id: $scope.refcustomers[i].id,
-                                                              phone: $scope.refcustomers[i].phone};            
+                                                              telefono: $scope.refcustomers[i].telefono};            
           }
         };
       }else{
@@ -114,10 +114,10 @@ angular.module('facturacionAdminApp')
 
       if($scope.customerPhone != undefined){                 
         for (var i=0; i<tam; i++) {
-          if($scope.customerPhone == $scope.refcustomers[i].phone.substring(0,$scope.customerPhone.length)){            
-            arraycustomers[$scope.refcustomers[i].id] = {name: $scope.refcustomers[i].name, 
+          if($scope.customerPhone == $scope.refcustomers[i].telefono.substring(0,$scope.customerPhone.length)){            
+            arraycustomers[$scope.refcustomers[i].id] = {nombre: $scope.refcustomers[i].nombre, 
                                                               id: $scope.refcustomers[i].id,
-                                                              phone: $scope.refcustomers[i].phone};            
+                                                              telefono: $scope.refcustomers[i].telefono};            
           }
         };
       }else{
@@ -126,26 +126,26 @@ angular.module('facturacionAdminApp')
       }   
 
       if(jQuery.isEmptyObject(arraycustomers)){
-        arraycustomers[0] = {phone : 'No existe'};
+        arraycustomers[0] = {telefono : 'No existe'};
         $scope.customers = arraycustomers; 
       }else{
         $scope.customers = arraycustomers;            
       }
     }
    
-    $scope.changeCustomer = function(idClass, name, id, phone){//Cuando eliges un customer lo reemplaza en el campo de texto      
-      if(name != 'No existe' && id != 'No existe' && phone != 'No existe'){
-        if(idClass == 'name'){
+    $scope.changeCustomer = function(idClass, nombre, id, telefono){//Cuando eliges un customer lo reemplaza en el campo de texto      
+      if(nombre != 'No existe' && id != 'No existe' && telefono != 'No existe'){
+        if(idClass == 'nombre'){
           $('.dropdown-menu-customerName').click().toggle();
         }else if(idClass == 'id'){
           $('.dropdown-menu-customerId').click().toggle();
-        }else if(idClass == 'phone'){
+        }else if(idClass == 'telefono'){
           $('.dropdown-menu-customerPhone').click().toggle();
         }
         toggle = true;        
-        $scope.customerName = name;
+        $scope.customerName = nombre;
         $scope.customerId = id;
-        $scope.customerPhone = phone;
+        $scope.customerPhone = telefono;
         $scope.customers = null;
       }      
     }   

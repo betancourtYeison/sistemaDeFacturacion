@@ -23,8 +23,7 @@
                 <button type="button" class="close" ng-click="closeAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <span>El producto se ha creado exitosamente.</span>
               </div>
-              <h4 class="modal-title" id="myModalLabel">Nuevo Producto</h4>
-              <div id="errorProveedor" class="text-danger"></div>
+              <h4 class="modal-title" id="myModalLabel">Nuevo Producto</h4>            
             </div>
             <div class="modal-body">
               <form id="form-proveedor-compra" role="form" name="form">
@@ -54,7 +53,7 @@
                     </div>
                 </div>
                 <div class="form-group has-feedback" ng-class="{'has-error': form.cantidad.$invalid, 'has-success': form.cantidad.$valid}">           
-                    <input id="inputcantidad" type="text" placeholder="Cantidad a ingresar"  class="form-control" name="cantidad" ng-model="productsList.cantidad" required>                               
+                    <input id="inputcantidad" type="number" placeholder="Cantidad a ingresar"  class="form-control" name="cantidad" ng-model="productsList.cantidad" required>                               
                     <div ng-show="form.cantidad.$dirty && form.cantidad.$invalid">
                       <p class="help-block text-danger" ng-show="form.cantidad.$error.required">Campo obligatorio</p>
                     </div>
@@ -95,7 +94,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>              
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAlert()">Cerrar</button>              
               <button type="button" class="btn btn-primary btn-grabar-proveedor-compra" data-dismiss="modal" ng-click="createNewProduct(form)" ng-disabled="form.$invalid || exitsProduct()">Grabar</button>
             </div>
           </div>

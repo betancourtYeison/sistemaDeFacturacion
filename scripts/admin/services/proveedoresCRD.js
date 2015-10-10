@@ -22,13 +22,13 @@ angular.module('facturacionAdminApp')
 			    scope.proveedores = angular.copy(scope.master);
 			  } 
 			};
-			
+
 			firebaseRef('proveedores/'+ scope.proveedores.rut).set({
 			  rut: scope.proveedores.rut,			  
-			  name: scope.proveedores.name,			  
-			  email: scope.proveedores.mail,
-			  address: scope.proveedores.address,
-			  phone: scope.proveedores.phone,
+			  nombre: scope.proveedores.nombre,			  
+			  correo: scope.proveedores.correo,
+			  direccion: scope.proveedores.direccion,
+			  telefono: scope.proveedores.telefono,
 			  area: scope.proveedores.area
 			}, onComplete);  
 		},

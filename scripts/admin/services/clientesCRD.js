@@ -25,10 +25,10 @@ angular.module('facturacionAdminApp')
 			
 			firebaseRef('clientes/'+ scope.customers.id).set({
 			  id: scope.customers.id,			  
-			  name: scope.customers.name,			  
-			  email: scope.customers.mail,
-			  address: scope.customers.address,
-			  phone: scope.customers.phone,
+			  nombre: scope.customers.nombre,			  
+			  correo: scope.customers.correo,
+			  direccion: scope.customers.direccion,
+			  telefono: scope.customers.telefono,
 			  area: scope.customers.area
 			}, onComplete); 
 		},

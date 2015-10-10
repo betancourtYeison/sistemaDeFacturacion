@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Actualiza la información    
+    Actualiza la información  
   </h1>
   <ol class="breadcrumb">
     <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
-    <li><a href="#/listaProductosCRD">Productos</a></li>
+    <li><a href="#/stockActual">Inventario</a></li>
     <li class="active">Actualiza la información</li>
   </ol>
 </section>
@@ -40,7 +40,7 @@
           </div>
       </div>
       <div class="form-group has-feedback" ng-class="{'has-error': form.cantidad.$invalid, 'has-success': form.cantidad.$valid}">           
-          <input id="inputcantidad" type="text" placeholder="Cantidad a ingresar"  class="form-control" name="cantidad" ng-model="productsList.cantidad" required>                               
+          <input id="inputcantidad" type="number" placeholder="Cantidad a ingresar"  class="form-control" name="cantidad" ng-model="productsList.cantidad" required>                               
           <div ng-show="form.cantidad.$dirty && form.cantidad.$invalid">
             <p class="help-block text-danger" ng-show="form.cantidad.$error.required">Campo obligatorio</p>
           </div>
