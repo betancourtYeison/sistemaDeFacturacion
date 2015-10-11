@@ -10,7 +10,8 @@
 
 //Controlador para Login la cual tiene 1 servicio listadoProductosServiceU con su respectivo scope
 angular.module('facturacionAdminApp')
-  .controller('ListadoProductosCtrlU', ['$scope', 'listadoProductosServiceU', '$location', '$firebaseArray', 'firebaseRef', '$routeParams', 'syncData', function ($scope, listadoProductosServiceU, $location, $firebaseArray, firebaseRef, $routeParams, syncData) {
+  .controller('ListadoProductosCtrlU', ['$scope', 'listadoProductosServiceU', '$location', '$firebaseArray', 'firebaseRef', '$routeParams', 'syncData', 
+    function ($scope, listadoProductosServiceU, $location, $firebaseArray, firebaseRef, $routeParams, syncData) {
         
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/listadoProductos");
 

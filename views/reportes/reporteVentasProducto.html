@@ -1,12 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Reporte de Ventas    
+    Productos de la factura: {{noFactura}}
   </h1>
   <ol class="breadcrumb">
     <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
     <li><a href="#/reporteVentas">Reportes</a></li>
-    <li class="active">Reporte de Ventas</li>
+    <li><a href="#/reporteVentas">Reporte de Ventas</a></li>
+    <li class="active">Reporte de Productos</li>
   </ol>
 </section>
 
@@ -16,7 +17,9 @@
         <div class="panel-heading">
           
           <div class="input-group">
-            <span class="text-left panel-title">Página: {{tableParams.page()}}</span>                               
+            <span class="text-left panel-title">Página: {{tableParams.page()}}</span>                   
+            <button type="button" class="btn btn-default pull-right" ng-click="regresarReportes()" aria-describedby="basic-addon2">Volver</button> 
+            <span class="input-group-addon" id="basic-addon2"><a ng-click="regresarReportes()"><span class="glyphicon glyphicon-chevron-left"></span></a></span>
           </div>
           
           <div class="input-group" style="margin-top: 20px">
@@ -31,29 +34,27 @@
               <thead>
                 <tr>
                   <th style="min-width: 80px;">
-                    Numero de Factura
+                    Codigo de Barras
                     <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-noFactura',true)"></span>
                     <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('noFactura',false)"></span>                                    
                   </th>
                   <th style="min-width: 80px;">
-                    Fecha
+                    Referencia
                     <span ng-hide="sort" class="fa fa-sort-amount-asc" style="cursor: pointer" ng-click="ordenarPor('-fecha',true)"></span>
                     <span ng-show="sort" class="fa fa-sort-amount-desc" style="cursor: pointer" ng-click="ordenarPor('fecha',false)"></span> 
                   </th>
-                  <th style="min-width: 80px;">Cédula </th>
-                  <th style="min-width: 80px;">Nombre Teléfono</th>
-                  <th style="min-width: 80px;">Teléfono</th> 
-                  <th style="width:50px;"> </th>                 
+                  <th style="min-width: 80px;">Valor Unitario </th>
+                  <th style="min-width: 80px;">Cantidad</th>
+                  <th style="min-width: 80px;">Valor Total</th>                                
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="registro in $data | orderBy:ordenSeleccionado | filter:buscar">
-                  <td>{{ registro.noFactura }}</td>
-                  <td>{{ registro.fecha }}</td> 
-                  <td>{{ registro.cedula }}</td>                  
-                  <td>{{ registro.nombre }}</td>
-                  <td>{{ registro.telefono }}</td>     
-                  <td><a ng-click="verProductos(registro.noFactura)" class="btn btn-small btn-success">Ver Productos</a></td>
+                <tr ng-repeat="producto in $data | orderBy:ordenSeleccionado | filter:buscar">
+                  <td>{{ producto.codigo }}</td>
+                  <td>{{ producto.referencia }}</td> 
+                  <td>{{ producto.valorUni }}</td>                  
+                  <td>{{ producto.cantidad }}</td>
+                  <td>{{ producto.valorTot }}</td>                       
                 </tr>
               </tbody>
               <tfoot>

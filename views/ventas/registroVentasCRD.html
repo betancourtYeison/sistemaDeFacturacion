@@ -144,8 +144,8 @@
             Forma de Pago
             <div class="form-group has-feedback" ng-class="{'has-error': form.pago.$invalid, 'has-success': form.pago.$valid}">  
               <select id="inputpago" placeholder="Pago" class="form-control" name="pago" ng-model="productPago" required>
-                <option value="1">Contado</option>
-                <option value="2">Credito a 30 días</option>
+                <option value="Contado">Contado</option>
+                <option value="Credito">Credito a 30 días</option>
               </select>
               <div ng-show="form.pago.$dirty && form.pago.$invalid">
                 <p class="help-block text-danger" ng-show="form.pago.$error.required">Campo obligatorio</p>
@@ -194,9 +194,9 @@
                     <td>{{ producto.referencia }}</td>
                     <td>{{ producto.codigo }}</td>
                     <td>{{ producto.valorUni }}</td>
-                    <td><input ng-change="calculateValTot(producto)" ng-model="producto.cantidad"/></td>
+                    <td>{{ producto.cantidad }}</td>
                     <td>{{ producto.valorTot }}</td> 
-                    <td><a ng-click="deleteProduct($index)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                    <td><a ng-click="deleteProduct($index,producto.codigo)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
                   </tr>
                 </tbody>
                 <tfoot>

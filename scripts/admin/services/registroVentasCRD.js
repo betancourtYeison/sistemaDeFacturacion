@@ -11,7 +11,7 @@
 //Servicio de Ventas
 angular.module('facturacionAdminApp')
   .factory('registroVentasServiceCRD',function(){	
-	return{	
+	return{		
 		calculateValTot:function(producto,scope){//Funcion para crear usuario
 			producto.valorTot = (producto.valorUni*producto.cantidad);
 			scope.subTotal = 0;
@@ -26,7 +26,7 @@ angular.module('facturacionAdminApp')
 			}else{
 			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
 			}  
-		},			
+		},		
 		calculateTot:function(scope){//Funcion para crear usuario
 			if(scope.descuento == 0){
 			  scope.total = (scope.subTotal + scope.impuesto);
@@ -57,6 +57,11 @@ angular.module('facturacionAdminApp')
 			  scope.total = (scope.subTotal + scope.impuesto)-(((scope.subTotal + scope.impuesto) * scope.descuento)/100);
 			}  
 			scope.generarFactura = false;      			
+		},
+		updateCountProduct:function(scope, location){//Funcion para actualizar
+			console.log(scope.refProductEdit);
+			console.log(scope.productEdit);
+			scope.refProductEdit.$save(scope.productEdit);
 		},	
 		deleteProduct:function(id, scope){//Funcion para eliminar usuario
 			scope.datosProducto.reverse();

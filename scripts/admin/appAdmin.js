@@ -72,7 +72,12 @@ angular
         templateUrl: 'views/cuentas/cuentasPagar.html'
       })           
       .when('/reporteVentas', {//si en la url es /
-        templateUrl: 'views/reportes/reporteVentas.html'
+        templateUrl: 'views/reportes/reporteVentas.html',
+        controller: 'ReportesVentasCtrl'
+      })           
+      .when('/reporteVentasProducto/:noFactura', {//si en la url es /
+        templateUrl: 'views/reportes/reporteVentasProducto.html',
+        controller: 'ReportesVentasProductoCtrl'
       })           
       .when('/reportePedidos', {//si en la url es /
         templateUrl: 'views/reportes/reportePedidos.html'
