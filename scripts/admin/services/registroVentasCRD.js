@@ -58,10 +58,16 @@ angular.module('facturacionAdminApp')
 			}  
 			scope.generarFactura = false;      			
 		},
-		updateCountProduct:function(scope, location){//Funcion para actualizar
-			console.log(scope.refProductEdit);
-			console.log(scope.productEdit);
-			scope.refProductEdit.$save(scope.productEdit);
+		updateCountProduct:function(firebaseRef, scope){//Funcion para actualizar						
+			firebaseRef('listadoProductos/'+ scope.productEdit.codigoBarras).set({
+			  codigoBarras: scope.productEdit.codigoBarras,			  
+			  referencia: scope.productEdit.referencia,			  
+			  descripcion: scope.productEdit.descripcion,
+			  precioUnitario: scope.productEdit.precioUnitario,
+			  grupo: scope.productEdit.grupo,
+			  unidad: scope.productEdit.unidad,
+			  cantidad: scope.productEdit.cantidad
+			});  
 		},	
 		deleteProduct:function(id, scope){//Funcion para eliminar usuario
 			scope.datosProducto.reverse();
