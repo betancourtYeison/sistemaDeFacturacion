@@ -12,6 +12,19 @@
 angular.module('facturacionAdminApp')
   .factory('registroVentasServiceCRD',function(){	
 	return{		
+		updateTempBase:function(firebaseRef, refProductEdit){//Funcion para actualizar		
+			for (var i=0; i<refProductEdit.length; i++) {			  
+			  firebaseRef('listadoProductosTemporal/'+ refProductEdit[i].codigoBarras).set({
+			  	cantidad: refProductEdit[i].cantidad,
+			    codigoBarras: refProductEdit[i].codigoBarras,			  
+			    descripcion: refProductEdit[i].descripcion,
+			    grupo: refProductEdit[i].grupo,
+			    precioUnitario: refProductEdit[i].precioUnitario,
+			    referencia: refProductEdit[i].referencia,			  			    
+			    unidad: refProductEdit[i].unidad			    
+			  }); 
+			};				
+		},	
 		calculateValTot:function(producto,scope){//Funcion para crear usuario
 			producto.valorTot = (producto.valorUni*producto.cantidad);
 			scope.subTotal = 0;
@@ -59,7 +72,7 @@ angular.module('facturacionAdminApp')
 			scope.generarFactura = false;      			
 		},
 		updateCountProduct:function(firebaseRef, scope){//Funcion para actualizar						
-			firebaseRef('listadoProductos/'+ scope.productEdit.codigoBarras).set({
+			firebaseRef('listadoProductosTemporal/'+ scope.productEdit.codigoBarras).set({
 			  codigoBarras: scope.productEdit.codigoBarras,			  
 			  referencia: scope.productEdit.referencia,			  
 			  descripcion: scope.productEdit.descripcion,
@@ -103,7 +116,20 @@ angular.module('facturacionAdminApp')
 				  valorTot: scope.datosProducto[i].valorTot,
 				  formaPago: scope.datosProducto[i].formaPago
 				});
-			} 		
+			} 	
+
+			//Actualiza bd original
+			for (var i=0; i<scope.refProductsTemp.length; i++) {			  
+			  firebaseRef('listadoProductos/'+ scope.refProductsTemp[i].codigoBarras).set({
+			  	cantidad: scope.refProductsTemp[i].cantidad,
+			    codigoBarras: scope.refProductsTemp[i].codigoBarras,			  
+			    descripcion: scope.refProductsTemp[i].descripcion,
+			    grupo: scope.refProductsTemp[i].grupo,
+			    precioUnitario: scope.refProductsTemp[i].precioUnitario,
+			    referencia: scope.refProductsTemp[i].referencia,			  			    
+			    unidad: scope.refProductsTemp[i].unidad			    
+			  }); 
+			};		
 
 			timeout(function(){
 			  location.path('/registroVentasCRD/');
@@ -115,6 +141,7 @@ angular.module('facturacionAdminApp')
       		scope.ordenSeleccionado = orden;
 		},
 		printPDF:function(scope){//Funcion para crear usuario			
+
 			var doc = new jsPDF('l', 'cm', [22, 14]);
 			var elementHandler = {
 			  '#oi' : function(element, renderer) {

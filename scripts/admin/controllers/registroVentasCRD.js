@@ -15,12 +15,14 @@ angular.module('facturacionAdminApp')
   
     var ref = new Firebase("https://sistemadefacturacion.firebaseio.com/registroVentas");
     var refProduct = new Firebase("https://sistemadefacturacion.firebaseio.com/listadoProductos");
+    var refProductTemp = new Firebase("https://sistemadefacturacion.firebaseio.com/listadoProductosTemporal");
     var f = new Date();    
     
     $scope.fecha = (f.getMonth() +1) + "/" + f.getDate() + "/" +  f.getFullYear();  
     $scope.hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
     $scope.refVentas = $firebaseArray(ref);
     $scope.refProductEdit = $firebaseArray(refProduct);    
+    $scope.refProductsTemp = $firebaseArray(refProductTemp);    
     $scope.master = {};
     $scope.factura = [];
     $scope.datosProducto = [];
@@ -41,10 +43,19 @@ angular.module('facturacionAdminApp')
         $scope.noFactura = refVentas.length + 1;
     }); 
 
+    $scope.refProductEdit.$loaded().then(function(refProductEdit) {
+        registroVentasServiceCRD.updateTempBase(firebaseRef, refProductEdit);      
+    }); 
+
     var authData = firebaseRef().getAuth();
     if(authData){
       $scope.user = authData.password.email;          
-    }  
+    }      
+
+    $scope.updateTempBase = function () {//funcion que llama al servicio para crear usuario                        
+      registroVentasServiceCRD.updateTempBase(firebaseRef, $scope.refProductEdit);      
+    }
+
 
     $scope.calculateValTot = function (producto) {//funcion que llama al servicio para crear usuario                        
       registroVentasServiceCRD.calculateValTot(producto, $scope);      
@@ -62,7 +73,7 @@ angular.module('facturacionAdminApp')
 
       for (var i=0; i<$scope.datosProducto.length; i++) {                             
         if($scope.datosProducto[i].codigo == productCod){            
-          $scope.productEdit = $scope.refProductEdit.$getRecord(productCod);          
+          $scope.productEdit = $scope.refProductsTemp.$getRecord(productCod);          
           $scope.productEditCantidad = $scope.productEdit.cantidad;          
           $scope.productEdit.cantidad = ($scope.productEdit.cantidad - productCount);          
 
@@ -85,16 +96,16 @@ angular.module('facturacionAdminApp')
 
       //Si no existe en la tabla recore los productos y revisa si la cantidad no excede el stock
       if($scope.productIsntInTable){            
-        $scope.productEdit = $scope.refProductEdit.$getRecord(productCod);            
+        $scope.productEdit = $scope.refProductsTemp.$getRecord(productCod);            
         $scope.productEditCantidadInicial = $scope.productEdit.cantidad;            
 
-        $scope.backUpDatosProducto.push({codigoBarras: $scope.productEdit.codigoBarras,
-                                          referencia: $scope.productEdit.referencia,
+        $scope.backUpDatosProducto.push({cantidad: $scope.productEdit.cantidad,
+                                          codigoBarras: $scope.productEdit.codigoBarras,
                                           descripcion: $scope.productEdit.descripcion,
                                           grupo: $scope.productEdit.grupo,
                                           precioUnitario: $scope.productEdit.precioUnitario,
-                                          unidad: $scope.productEdit.unidad,
-                                          cantidad: $scope.productEdit.cantidad
+                                          referencia: $scope.productEdit.referencia,
+                                          unidad: $scope.productEdit.unidad                                          
                                        });   
                 
         $scope.productEdit.cantidad = ($scope.productEdit.cantidad - productCount);            
