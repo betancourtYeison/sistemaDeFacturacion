@@ -153,7 +153,7 @@
               </div>      
           </div>
           <div class="col-md-2">
-            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(refproductsList, productExists, customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
+            <div class="text-center" style="padding-top: 20px;"><a ng-click="addProduct(productExists, customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago)" ng-disabled="form.$invalid" class="btn btn-md btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar</a>
             </div>
           </div>
         </div>     
@@ -192,11 +192,11 @@
                   <tr ng-repeat="producto in datosProducto | orderBy:ordenSeleccionado | filter:buscar">                    
                     <td>{{ producto.descripcion }}</td>
                     <td>{{ producto.referencia }}</td>
-                    <td>{{ producto.codigo }}</td>
-                    <td>{{ producto.valorUni }}</td>
+                    <td>{{ producto.codigoBarras }}</td>
+                    <td>{{ producto.precioUnitario }}</td>
                     <td>{{ producto.cantidad }}</td>
                     <td>{{ producto.valorTot }}</td> 
-                    <td><a ng-click="deleteProduct($index,producto.codigo)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                    <td><a ng-click="deleteProduct($index,producto.codigoBarras)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
                   </tr>
                 </tbody>
                 <tfoot>

@@ -13,9 +13,10 @@ angular.module('facturacionAdminApp')
   .factory('registroVentasServiceCRD',function(){	
 	return{		
 		updateTempBase:function(firebaseRef, refProductEdit){//Funcion para actualizar		
+			console.log("Entroooooooooooooooooooooooooooooooooooooo");
 			for (var i=0; i<refProductEdit.length; i++) {			  
 			  firebaseRef('listadoProductosTemporal/'+ refProductEdit[i].codigoBarras).set({
-			  	cantidad: refProductEdit[i].cantidad,
+			  	cantidad: 1000,
 			    codigoBarras: refProductEdit[i].codigoBarras,			  
 			    descripcion: refProductEdit[i].descripcion,
 			    grupo: refProductEdit[i].grupo,
@@ -26,11 +27,11 @@ angular.module('facturacionAdminApp')
 			};				
 		},	
 		calculateValTot:function(producto,scope){//Funcion para crear usuario
-			producto.valorTot = (producto.valorUni*producto.cantidad);
+			producto.valorTot = (producto.precioUnitario*producto.cantidad);
 			scope.subTotal = 0;
 			
 			for (var i=0; i<scope.datosProducto.length; i++) {
-			  scope.subTotal += (scope.datosProducto[i].valorUni*scope.datosProducto[i].cantidad);                
+			  scope.subTotal += (scope.datosProducto[i].precioUnitario*scope.datosProducto[i].cantidad);                
 			};
 			
 			scope.impuesto = (scope.subTotal * 16)/100;
@@ -48,13 +49,13 @@ angular.module('facturacionAdminApp')
 			}  
 		},
 		addProduct:function(customerName, customerId, customerPhone, productRef, productDescrip, productCod, productVal, productCount, productPago, scope){//Funcion para crear usuario
-			scope.datosProducto.push({referencia: productRef, 
+			scope.datosProducto.push({cantidad: productCount, 
+									  codigoBarras: productCod, 
 									  descripcion: productDescrip,
-			                          codigo: productCod, 
-			                          cantidad: productCount, 
-			                          valorUni: productVal, 
-			                          valorTot: (productVal*productCount),
-			                          formaPago: productPago});      
+									  precioUnitario: productVal, 
+									  referencia: productRef, 									  			                          
+			                          formaPago: productPago,
+			                      	  valorTot: (productVal*productCount),});      
 
 			scope.factura = {noFactura: scope.noFactura,
 			                  nombre: customerName,
@@ -108,18 +109,18 @@ angular.module('facturacionAdminApp')
 			});  		
 
 			for (var i=0; i<scope.datosProducto.length; i++) {
-				firebaseRef('registroVentas/'+ scope.factura.noFactura+'/datosProducto/'+scope.datosProducto[i].codigo).set({
+				firebaseRef('registroVentas/'+ scope.factura.noFactura+'/datosProducto/'+scope.datosProducto[i].codigoBarras).set({
 				  referencia: scope.datosProducto[i].referencia,
-				  codigo: scope.datosProducto[i].codigo,
+				  codigoBarras: scope.datosProducto[i].codigoBarras,
 				  cantidad: scope.datosProducto[i].cantidad,
-				  valorUni: scope.datosProducto[i].valorUni,
+				  precioUnitario: scope.datosProducto[i].precioUnitario,
 				  valorTot: scope.datosProducto[i].valorTot,
 				  formaPago: scope.datosProducto[i].formaPago
 				});
-			} 	
+			} 	 
 
 			//Actualiza bd original
-			for (var i=0; i<scope.refProductsTemp.length; i++) {			  
+			for (var i=0; i<scope.refProductsTemp.length; i++) {					
 			  firebaseRef('listadoProductos/'+ scope.refProductsTemp[i].codigoBarras).set({
 			  	cantidad: scope.refProductsTemp[i].cantidad,
 			    codigoBarras: scope.refProductsTemp[i].codigoBarras,			  
@@ -307,7 +308,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(10.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].codigo); 
+			    doc.text(10.5, ((6.5)+(posY*0.6)), scope.datosProducto[i].codigoBarras); 
 			    posY++;
 			  }
 
@@ -315,7 +316,7 @@ angular.module('facturacionAdminApp')
 			  doc.setFontSize(10);
 			  doc.setTextColor(0, 0, 0, 0);
 			  for (var i=(iteradorPaginas * 9); i<datosLength; i++){ 
-			    doc.text(13, ((6.5)+(posY*0.6)), scope.datosProducto[i].valorUni); 
+			    doc.text(13, ((6.5)+(posY*0.6)), scope.datosProducto[i].precioUnitario); 
 			    posY++;
 			  }
 
